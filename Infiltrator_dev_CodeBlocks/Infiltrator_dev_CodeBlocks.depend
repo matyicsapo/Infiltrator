@@ -1,0 +1,80 @@
+# depslib dependency file v1.0
+1316875957 source:/home/matyi/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/AnimatedSprite.cpp
+	"AnimatedSprite.hpp"
+	"CfgParser.hpp"
+	"Convert.hpp"
+
+1316874416 /home/matyi/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/AnimatedSprite.hpp
+	"Sprite.hpp"
+	"Updateable.hpp"
+
+1316876200 /home/matyi/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/Sprite.hpp
+	"Drawable.hpp"
+	"SFML/Graphics.hpp"
+	<string>
+	"ImageManager.hpp"
+	"SFMLGameManager.hpp"
+
+1316770698 /home/matyi/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/Drawable.hpp
+
+1316769820 /home/matyi/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/ImageManager.hpp
+	<SFML/Graphics.hpp>
+	<map>
+
+1316881518 /home/matyi/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/SFMLGameManager.hpp
+	<SFML/Graphics.hpp>
+	"GameStateMachine.hpp"
+
+1316769808 /home/matyi/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/GameStateMachine.hpp
+	"GameState.hpp"
+
+1316769792 /home/matyi/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/GameState.hpp
+
+1316770702 /home/matyi/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/Updateable.hpp
+
+1316876694 /home/matyi/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/CfgParser.hpp
+	<string>
+	<map>
+	<fstream>
+	<vector>
+	"Convert.hpp"
+	<cassert>
+
+1316898586 /home/matyi/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/Convert.hpp
+	<sstream>
+
+1316854008 source:/home/matyi/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/CfgParser.cpp
+	"CfgParser.hpp"
+	<iostream>
+
+1316937922 source:/home/matyi/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/Convert.cpp
+	"Convert.hpp"
+	<boost/lexical_cast.hpp>
+
+1316898198 source:/home/matyi/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/GameState_Logos.cpp
+	"GameState_Logos.hpp"
+	"CfgParser.hpp"
+	<iostream>
+
+1316898583 /home/matyi/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/GameState_Logos.hpp
+	"GameState.hpp"
+	"TimeAnimatedSprite.hpp"
+	<vector>
+
+1316875000 /home/matyi/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/TimeAnimatedSprite.hpp
+	"AnimatedSprite.hpp"
+
+1316769854 source:/home/matyi/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/ImageManager.cpp
+	"ImageManager.hpp"
+
+1316882519 source:/home/matyi/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/SFMLGameManager.cpp
+	"SFMLGameManager.hpp"
+	<iostream>
+
+1316876218 source:/home/matyi/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/TimeAnimatedSprite.cpp
+	"TimeAnimatedSprite.hpp"
+
+1316885886 source:/home/matyi/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/main.cpp
+	"SFMLGameManager.hpp"
+	"GameState_Logos.hpp"
+
