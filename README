@@ -1,0 +1,5 @@
+Infiltrator is a top-down 2D single-player stealth game.
+Developed in C++ utilizing SFML for cross-platform window handling, input, 2D graphics and audio.
+It also is my thesis work for my additional year in high-school as a software developer.
+
+That's it for now - this is just a 'test' README file.
