@@ -2,17 +2,16 @@
 #define CFGPARSER_HPP
 
 #include <string>
-
 #include <map>
 #include <fstream>
-
 #include <vector>
-
-#include "Convert.hpp"
 
 #include <cassert>
 
+#include "Convert.hpp"
+
 class CfgParser {
+private:
     std::map<std::string, std::ifstream*> openFiles;
 
     std::ifstream* Begin (std::string fileName);
@@ -91,6 +90,10 @@ public:
                 return entries->end();
             }
 
+            const CfgEntryMap* GetVector () {
+				return entries;
+            }
+
             friend class CfgParser;
         };
         // === CfgEntries //
@@ -128,103 +131,7 @@ public:
 	};
 	// === CfgContents //
 
-/*
-    // CfgContents === //
-	class CfgContents {
-        class CfgEntries;
-
-    public:
-        /// first : key name
-        ///
-        /// second : value
-	    typedef std::map<std::string, std::string> CfgEntryMap;
-
-	    /// first  : section name
-	    ///
-	    /// second : entrymap pointer
-	    typedef std::map<std::string, CfgEntries*> CfgSectionMap;
-
-    private:
-        // CfgEntries === //
-        class CfgEntries {
-            CfgEntryMap* entries;
-
-        public:
-            CfgEntries () {
-                entries = new CfgEntryMap();
-            }
-
-            CfgEntries (const CfgEntries& e) {
-                entries = new CfgEntryMap(*(e.entries));
-            }
-
-            ~CfgEntries () {
-                delete entries; entries = 0;
-            }
-
-            std::string operator [] (std::string key) {
-                return (*entries)[key];
-            }
-
-            CfgEntryMap::iterator GetIteratorBegin () {
-                return entries->begin();
-            }
-
-            CfgEntryMap::iterator GetIteratorEnd () {
-                return entries->end();
-            }
-
-            friend class CfgParser;
-        };
-        // === CfgEntries //
-
-// why is this a pointer? ******************************************************************************************************
-        CfgSectionMap* sections;
-
-    public:
-        CfgContents () {
-            sections = new CfgSectionMap();
-        }
-
-        ~CfgContents () {
-            for (CfgSectionMap::iterator itSections = sections->begin(); itSections != sections->end(); itSections++) {
-                delete itSections->second;
-                itSections->second = 0;
-            }
-
-            delete sections; sections = 0;
-        }
-
-        CfgEntries operator [] (std::string sectionName) {
-            return CfgEntries(*(*sections)[sectionName]);
-        }
-
-        CfgSectionMap::iterator GetIteratorBegin () {
-            return sections->begin();
-        }
-
-        CfgSectionMap::iterator GetIteratorEnd () {
-            return sections->end();
-        }
-
-        friend class CfgParser;
-	};
-	// === CfgContents //
-*/
-
 	bool GetContents (std::string fileName, CfgContents& contents);
-
-    // //
-    // obsolete methods
-    // despite keeping the file open was possible it had to be searched for every Get
-/*
-	std::string GetString (std::string fileName, std::string key, std::string section = "", bool close = true);
-
-	int GetInt (std::string fileName, std::string key, std::string section = "", bool close = true);
-	float GetFloat (std::string fileName, std::string key, std::string section = "", bool close = true);
-
-	std::vector<std::string>* GetAllSections (std::string fileName, bool close = true);
-*/
 };
 
-#endif
+#endif // CFGPARSER_HPP

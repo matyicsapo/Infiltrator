@@ -1,82 +1,102 @@
 #include "SFMLGameManager.hpp"
 
-#include <iostream>
+#include "DrawManager.hpp"
+#include "MyConstants.hpp"
 
-SFMLGameManager::SFMLGameManager () : pGameStateMachine(0), bClear(true), clearColor(0, 0, 0) {
-	Create();
+SFMLGameManager::SFMLGameManager () : mGameStateMachine(0),
+										worldCamera2D(sf::FloatRect(0, 0, 800, 600), .5, 2),
+										bClear(true),
+										clearColor(0, 128, 0) {
+	Create(800, 600, false);
 }
 
-// singleton
-// ugyan a header guard miatt ha ez ott lenne defini√°lva akkorsem lenne gond
-// de an√©lk√ºl minden f√°jlban ahol a header include -olva van l√©tezne egy p√©ld√°ny
 SFMLGameManager* SFMLGameManager::Instance () {
 	static SFMLGameManager instance;
 
 	return &instance;
 }
 
-void SFMLGameManager::Create () {
-	bool fullScreen = false;
+void SFMLGameManager::Create (unsigned int width, unsigned int height, bool enable) {
+	fullScreen = enable;
 
-	//------------------------------------
-	// getting all videomodes available
-	// needed only in fullscreen mode
-	//------------------------------------
-	//unsigned int VideoModesCount = sf::VideoMode::GetModesCount();
-	//for (unsigned int i = 0; i < VideoModesCount; ++i)
-	//{
-	//sf::VideoMode Mode = sf::VideoMode::GetMode(i);
+	Create(width, height);
+}
 
-	// Mode is a valid video mode
-	//}
+void SFMLGameManager::Create (unsigned int width, unsigned int height) {
 	sf::VideoMode videoMode;
-	if (fullScreen) {
-		//videoMode = sf::VideoMode::GetMode(0); // 0th, best mode
-		videoMode = sf::VideoMode::GetDesktopMode(); // desktop mode
-	}
-	else {
-		unsigned int width = 800;
-		unsigned int height = 600;
-		unsigned int bitsPerPixel = 32;
-		videoMode = sf::VideoMode(width, height, bitsPerPixel);
-	}
+	unsigned int w = width;
+	unsigned int h = height;
+	unsigned int bitsPerPixel = 32;
+	videoMode = sf::VideoMode(w, h, bitsPerPixel);
 
 	std::string windowTitle = "Game";
 
-	unsigned long windowStyle = fullScreen ? sf::Style::Fullscreen : sf::Style::Titlebar | sf::Style::Close;
+	unsigned long windowStyle = fullScreen ? sf::Style::Fullscreen : sf::Style::Titlebar | sf::Style::Close | sf::Style::Resize;
 
 	unsigned int depthBits = 24;
 	unsigned int stencilBits = 8;
 	unsigned int antialiasingLevel = 0;
 	sf::WindowSettings windowSettings(depthBits, stencilBits, antialiasingLevel);
 
-    mainWindow.Create(videoMode, windowTitle, windowStyle, windowSettings);
+	win.Create(videoMode, windowTitle, windowStyle, windowSettings);
 
-    // sg. is needed on: for example Ubuntu 11.4
-    mainWindow.UseVerticalSync(true);
-    //mainWindow.SetFramerateLimit(60);
+	// ********************************************************************************************************
+	// sg. is needed on: for example (MY) Ubuntu 11.4
+	// not on MY Ubuntu 11.10 ?(not sure if helps)
+	// less problem in fullScreen ?(not sure if always)
+    win.UseVerticalSync(true);
+    //win.SetFramerateLimit(60);
+
+    reset = true;
 }
 
 int SFMLGameManager::Run () {
-    while (mainWindow.IsOpened()) {
-        sf::Event event;
-        while (mainWindow.GetEvent(event)) {
-            if (event.Type == sf::Event::Closed)
-                mainWindow.Close();
-        }
+    while (win.IsOpened()) {
+    	sfEvents.clear();
+    	sf::Event event;
+    	while (win.GetEvent(event)) {
+    		if (event.Type == sf::Event::Resized) {
+				reset = true;
+    		}
 
-        //clearColor = sf::Color(64, 64, 64, 0);
+			// minden event ˆsszegy˚jtÈse tov·bbad·sra
+			sfEvents.push_front(event);
+    	}
 
-        //std::cout << (int)clearColor.r << " " << (int)clearColor.g << " " << (int)clearColor.b <<
-			//" " << (int)clearColor.a << std::endl;
+		if (mGameStateMachine) mGameStateMachine->HandleEvents(sfEvents);
 
-        // ha a k√©p teljes eg√©sze fel√ºlrajzol√≥dik akkor a k√©perny≈ët√∂rl√©s redund√°ns
-        if (bClear) mainWindow.Clear(clearColor);
+		float windowFakeScale = 0;
+		if (reset) {
+			sf::Vector2f scaleV( (win.GetWidth()) / MyConstants::baseResolution.x,
+								(win.GetHeight()) / MyConstants::baseResolution.y);
 
-        if (pGameStateMachine) pGameStateMachine->Update();
+			windowFakeScale = scaleV.x < scaleV.y ? scaleV.x : scaleV.y;
 
-        mainWindow.Display();
+			worldCamera2D.Reset(win);
+		}
+
+		win.SetView(worldCamera2D.GetSfView());
+
+        // ha a kÈp teljes egÈsze fel¸lrajzolÛdik akkor a kÈpernyıtˆrlÈs redund·ns
+        if (bClear) win.Clear(clearColor);
+
+		// simple non-processed(non-fixed & no-nothing-ed) deltaTime
+        if (mGameStateMachine) mGameStateMachine->Update(win.GetFrameTime());
+
+        DrawManager::Instance()->DrawWorld(win, windowFakeScale);
+
+		win.SetView(sf::View(sf::FloatRect(0, 0, win.GetWidth(), win.GetHeight())));
+		DrawManager::Instance()->DrawScreenSpace(win, windowFakeScale);
+
+        win.Display();
+
+        reset = false;
     }
+
+	// deleting game, should delete everything which is pretty much fine since the program is about to close
+	// also and more important actually, any dumbfuck mistakes leaving some drawable's still alive can now be
+	// safely deleted by the DrawManager
+    delete mGameStateMachine; mGameStateMachine = 0;
 
     return EXIT_SUCCESS;
 }

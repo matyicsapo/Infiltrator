@@ -1,40 +1,46 @@
 #ifndef GAMESTATEMACHINE_HPP
 #define GAMESTATEMACHINE_HPP
 
+#include "SFMLEventHandler.hpp"
 #include "GameState.hpp"
 
-class GameStateMachine {
-	GameState* pCurrentState;
+class GameStateMachine : SFMLEventHandler {
+private:
+	GameState* currentState;
 
 public:
-	GameStateMachine () : pCurrentState(0) {}
-	GameStateMachine (GameState* pGameState) : pCurrentState(pGameState) {}
+	GameStateMachine (GameState* initialGameState) : currentState(initialGameState) {}
 
 	~GameStateMachine () {
-	    delete pCurrentState; pCurrentState = 0;
+	    delete currentState; currentState = 0;
 	}
 
-	void Update () {
-		if (pCurrentState) pCurrentState->Execute(this);
+	virtual void HandleEvents (std::list<sf::Event>& sfEvents) {
+		if (currentState) {
+			currentState->HandleEvents(sfEvents);
+		}
 	}
 
-	void SetCurrentState (GameState* pNewGameState) { pCurrentState = pNewGameState; }
+	void Update (float dT) {
+		if (currentState) {
+			currentState->Update(dT);
+		}
+	}
 
-	void ChangeState (GameState* pNewGameState) {
-		if (!pNewGameState) return;
+	void SetCurrentState (GameState* newGameState) { currentState = newGameState; }
 
-		//call the exit method of the existing state
-		if (pCurrentState) {
-			pCurrentState->Exit(this);
-			delete pCurrentState;
+	void ChangeState (GameState* newGameState) {
+		if (!newGameState) return;
+
+		if (currentState) {
+			currentState->Exit();
+			delete currentState;
 		}
 
-		//change state to the new state
-		pCurrentState = pNewGameState;
+		currentState = newGameState;
 
-		//call the entry method of the new state
-		pCurrentState->Enter(this);
+		currentState->Enter();
 	}
 };
 
-#endif
+#endif // GAMESTATEMACHINE_HPP

@@ -1,17 +1,19 @@
 #ifndef GAMESTATE_HPP
 #define GAMESTATE_HPP
 
-class GameStateMachine;
+#include "SFMLEventHandler.hpp"
 
-class GameState {
+class GameState : public SFMLEventHandler {
 public:
-    virtual ~GameState () {}
+	virtual ~GameState () {}
 
-	virtual void Enter (GameStateMachine* stateMachine) = 0;
+	virtual void HandleEvents (std::list<sf::Event>& sfEvents);
 
-	virtual void Execute (GameStateMachine* stateMachine) = 0;
+	virtual void Enter () = 0;
 
-	virtual void Exit (GameStateMachine* stateMachine) = 0;
+	virtual void Update (float dT) = 0;
+
+	virtual void Exit () = 0;
 };
 
-#endif
+#endif // GAMESTATE_HPP

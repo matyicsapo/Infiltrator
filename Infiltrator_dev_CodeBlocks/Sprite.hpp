@@ -3,51 +3,35 @@
 
 #include "Drawable.hpp"
 
-#include "SFML/Graphics.hpp"
-
-#include <string>
-
-#include "ImageManager.hpp"
-
-#include "SFMLGameManager.hpp"
-
-class Sprite : Drawable {
+class Sprite : virtual public DrawableBase {
 protected:
-	sf::RenderWindow* sfWin;
 	sf::Sprite* sfSprite;
 
+	virtual void SetFakeScale (sf::Vector2f fakeScale) { sfSprite->SetScale(fakeScale); }
+	virtual void SetFakePos (sf::Vector2f fakePos) { sfSprite->SetPosition(fakePos); }
+
 public:
-	Sprite () : sfSprite(0) {
-		sfWin = SFMLGameManager::Instance()->GetRenderWindow();
-    }
+	Sprite (float layerDepth) : DrawableBase(layerDepth) {}
+	Sprite (std::string textureFile, float layerDepth);
+    Sprite (Sprite const& sprite) : DrawableBase(sprite)
+		{ sfSprite = new sf::Sprite( *(sprite.sfSprite) ); }
 
-	Sprite (std::string fileName) {
-		sfWin = SFMLGameManager::Instance()->GetRenderWindow();
+    virtual ~Sprite () { delete sfSprite; }
 
-        sfSprite = 0;
+    virtual void Draw (sf::RenderWindow& rwin) { rwin.Draw(*sfSprite); }
 
-    	sf::Image* imgPointer = ImageManager::Instance()->GetImage(fileName);
-        if (imgPointer != 0) {
-            sfSprite = new sf::Sprite();
-            sfSprite->SetImage(*imgPointer);
+    virtual void SetColor (sf::Color color) { sfSprite->SetColor(color); }
 
-            sfSprite->SetCenter(imgPointer->GetWidth() / 2, imgPointer->GetHeight() / 2);
+	void SetImage (std::string textureFile);
 
-            sfSprite->SetPosition(sfWin->GetWidth() / 2, sfWin->GetHeight() / 2);
-        }
-    }
+	virtual void SetRotation (float rotation) { sfSprite->SetRotation(rotation); }
+	virtual float GetRotation () { return sfSprite->GetRotation(); }
+	virtual void Rotate (float angle) { sfSprite->Rotate(angle); }
 
-    virtual ~Sprite () {
-        delete sfSprite; sfSprite = 0;
-    }
-
-	virtual void Draw () {
-		sfWin->Draw(*sfSprite);
-	}
-
-	void SetPosition (sf::Vector2f position) {
-		sfSprite->SetPosition(position);
+	virtual sf::Vector2f GetScreenSize () {
+		sf::Vector2f imgSize(sfSprite->GetImage()->GetWidth(), sfSprite->GetImage()->GetHeight());
+		return sf::Vector2f(imgSize.x * sfSprite->GetScale().x, imgSize.y * sfSprite->GetScale().y);
 	}
 };
 
-#endif
+#endif // SPRITE_HPP

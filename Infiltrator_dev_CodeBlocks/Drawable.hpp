@@ -1,9 +1,14 @@
 #ifndef DRAWABLE_HPP
 #define DRAWABLE_HPP
 
-class Drawable {
+#include "DrawableBase.hpp"
+
+class Drawable : virtual public DrawableBase {
+protected:
+	virtual sf::Vector2f CalcFakePos () { return basePos * windowFakeScale; }
+
 public:
-	virtual void Draw () = 0;
+	Drawable (float layerDepth) : DrawableBase(layerDepth) {}
 };
 
-#endif
+#endif // DRAWABLE_HPP

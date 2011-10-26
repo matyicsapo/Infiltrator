@@ -3,57 +3,46 @@
 
 #include "GameState.hpp"
 
-#include "TimeAnimatedSprite.hpp"
+#include "WorldSprite.hpp"
+#include "WorldString.hpp"
+#include "ScreenString.hpp"
+#include "ScreenSprite.hpp"
 
-#include <vector>
-
-struct Logo {
-	Sprite* sprite;
-
-	sf::Color bgColor;
-
-	~Logo () {
-		delete sprite; sprite = 0;
-	}
-
-	Logo (std::string fileName, unsigned char bgColorR = 0, unsigned char bgColorG = 0, unsigned char bgColorB = 0) {
-		this->bgColor = sf::Color(bgColorR, bgColorG, bgColorB); // just clear color - don't care for alpha
-
-		if (fileName.rfind("/Animated/") != std::string::npos) {
-			sprite = new TimeAnimatedSprite(fileName);
-		}
-		else {
-			sprite = new Sprite(fileName);
-		}
-	}
-};
+#include "GUIButton.hpp"
+#include "GUIToggleButton.hpp"
+#include "GUITextfield.hpp"
 
 class GameState_Logos : public GameState {
-	//sf::RenderWindow* sfWin;
-	const sf::Input& sfInput;
+private:
+	WorldSprite* mWorldSprite1;
+	WorldSprite* mWorldSprite2;
 
-	bool keyDown_Space;
+	WorldString* mWorldString1;
 
-	float delay, fadeDuration, showDuration;
+	ScreenString* mScreenString1;
 
-	std::vector<Logo*> logos;
+	ScreenSprite* mScreenSprite1;
 
-	std::vector<Logo*>::iterator currentLogo;
+	GUIButton* btn1;
+	GUIToggleButton* toggleBtn1;
+	GUITextfield* textField1;
+
+	unsigned int itSfVideoMode;
+
+	void OnClick_btn1 ();
 
 public:
-	GameState_Logos () : sfInput(SFMLGameManager::Instance()->GetRenderWindow()->GetInput()), keyDown_Space(false) {}
+	GameState_Logos ();
 
-	~GameState_Logos () {
-		for (std::vector<Logo*>::iterator itLogo = logos.begin(); itLogo != logos.end(); itLogo++) {
-			delete *itLogo;
-		}
-	}
+	~GameState_Logos ();
 
-	void Enter (GameStateMachine* stateMachine);
+	virtual void HandleEvents(std::list<sf::Event>& sfEvents);
 
-	void Execute (GameStateMachine* stateMachine);
+	void Enter ();
 
-	void Exit (GameStateMachine* stateMachine);
+	void Update (float dT);
+
+	void Exit ();
 };
 
-#endif
+#endif // GAMESTATE_LOGOS_HPP
