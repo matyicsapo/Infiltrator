@@ -5,17 +5,17 @@
 		<Option title="Infiltrator_dev_CodeBlocks" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
-		<Option virtualFolders="GameStates\;Draw\;Draw\abstract\;Draw\realdrawables\;Draw\realdrawables\GUI stuff\;" />
+		<Option virtualFolders="GameStates/;Draw/;Draw/abstract/;Draw/realdrawables/;Draw/realdrawables/GUI stuff/;" />
 		<Build>
 			<Target title="Debug">
-				<Option output="bin\Debug\Infiltrator_dev_CodeBlocks" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj\Debug\" />
+				<Option output="bin/Debug/Infiltrator_dev_CodeBlocks" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
 					<Add option="-DSFML_DYNAMIC" />
-					<Add directory="..\..\..\Boost\boost_1_47_0" />
+					<Add directory="../../../Boost/boost_1_47_0" />
 				</Compiler>
 				<Linker>
 					<Add option="-lsfml-audio" />
@@ -25,8 +25,8 @@
 				</Linker>
 			</Target>
 			<Target title="Release">
-				<Option output="bin\Release\Infiltrator_dev_CodeBlocks" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj\Release\" />
+				<Option output="bin/Release/Infiltrator_dev_CodeBlocks" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
@@ -40,88 +40,107 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="AnimateSprite.cpp">
+			<Option virtualFolder="Draw/abstract/" />
+		</Unit>
+		<Unit filename="AnimatedSprite.hpp">
+			<Option virtualFolder="Draw/abstract/" />
+		</Unit>
 		<Unit filename="Camera2D.hpp" />
 		<Unit filename="CfgParser.cpp" />
 		<Unit filename="CfgParser.hpp" />
 		<Unit filename="Convert.cpp" />
 		<Unit filename="Convert.hpp" />
 		<Unit filename="DrawManager.cpp">
-			<Option virtualFolder="Draw\" />
+			<Option virtualFolder="Draw/" />
 		</Unit>
 		<Unit filename="DrawManager.hpp">
-			<Option virtualFolder="Draw\" />
+			<Option virtualFolder="Draw/" />
 		</Unit>
 		<Unit filename="Drawable.hpp">
-			<Option virtualFolder="Draw\abstract\" />
+			<Option virtualFolder="Draw/abstract/" />
 		</Unit>
 		<Unit filename="DrawableBase.hpp">
-			<Option virtualFolder="Draw\abstract\" />
+			<Option virtualFolder="Draw/abstract/" />
 		</Unit>
 		<Unit filename="DrawableString.cpp">
-			<Option virtualFolder="Draw\abstract\" />
+			<Option virtualFolder="Draw/abstract/" />
 		</Unit>
 		<Unit filename="DrawableString.hpp">
-			<Option virtualFolder="Draw\abstract\" />
+			<Option virtualFolder="Draw/abstract/" />
 		</Unit>
 		<Unit filename="GUIButton.cpp">
-			<Option virtualFolder="Draw\realdrawables\GUI stuff\" />
+			<Option virtualFolder="Draw/realdrawables/GUI stuff/" />
 		</Unit>
 		<Unit filename="GUIButton.hpp">
-			<Option virtualFolder="Draw\realdrawables\GUI stuff\" />
+			<Option virtualFolder="Draw/realdrawables/GUI stuff/" />
 		</Unit>
 		<Unit filename="GUITextfield.cpp">
-			<Option virtualFolder="Draw\realdrawables\GUI stuff\" />
+			<Option virtualFolder="Draw/realdrawables/GUI stuff/" />
 		</Unit>
 		<Unit filename="GUITextfield.hpp">
-			<Option virtualFolder="Draw\realdrawables\GUI stuff\" />
+			<Option virtualFolder="Draw/realdrawables/GUI stuff/" />
 		</Unit>
 		<Unit filename="GUIToggleButton.cpp">
-			<Option virtualFolder="Draw\realdrawables\GUI stuff\" />
+			<Option virtualFolder="Draw/realdrawables/GUI stuff/" />
 		</Unit>
 		<Unit filename="GUIToggleButton.hpp">
-			<Option virtualFolder="Draw\realdrawables\GUI stuff\" />
+			<Option virtualFolder="Draw/realdrawables/GUI stuff/" />
 		</Unit>
 		<Unit filename="GameState.cpp">
-			<Option virtualFolder="GameStates\" />
+			<Option virtualFolder="GameStates/" />
 		</Unit>
 		<Unit filename="GameState.hpp">
-			<Option virtualFolder="GameStates\" />
+			<Option virtualFolder="GameStates/" />
 		</Unit>
 		<Unit filename="GameStateMachine.hpp">
-			<Option virtualFolder="GameStates\" />
+			<Option virtualFolder="GameStates/" />
 		</Unit>
 		<Unit filename="GameState_Logos.cpp">
-			<Option virtualFolder="GameStates\" />
+			<Option virtualFolder="GameStates/" />
 		</Unit>
 		<Unit filename="GameState_Logos.hpp">
-			<Option virtualFolder="GameStates\" />
+			<Option virtualFolder="GameStates/" />
 		</Unit>
 		<Unit filename="MyConstants.hpp" />
+		<Unit filename="Player.cpp" />
+		<Unit filename="Player.hpp" />
 		<Unit filename="ResourceManager.cpp" />
 		<Unit filename="ResourceManager.hpp" />
 		<Unit filename="SFMLEventHandler.hpp" />
 		<Unit filename="SFMLGameManager.cpp" />
 		<Unit filename="SFMLGameManager.hpp" />
 		<Unit filename="ScreenSpaceDrawable.hpp">
-			<Option virtualFolder="Draw\abstract\" />
+			<Option virtualFolder="Draw/abstract/" />
 		</Unit>
 		<Unit filename="ScreenSprite.hpp">
-			<Option virtualFolder="Draw\realdrawables\" />
+			<Option virtualFolder="Draw/realdrawables/" />
 		</Unit>
 		<Unit filename="ScreenString.hpp">
-			<Option virtualFolder="Draw\realdrawables\" />
+			<Option virtualFolder="Draw/realdrawables/" />
 		</Unit>
 		<Unit filename="Sprite.cpp">
-			<Option virtualFolder="Draw\abstract\" />
+			<Option virtualFolder="Draw/abstract/" />
 		</Unit>
 		<Unit filename="Sprite.hpp">
-			<Option virtualFolder="Draw\abstract\" />
+			<Option virtualFolder="Draw/abstract/" />
+		</Unit>
+		<Unit filename="SpriteAnimationManager.cpp">
+			<Option virtualFolder="Draw/" />
+		</Unit>
+		<Unit filename="SpriteAnimationManager.hpp">
+			<Option virtualFolder="Draw/" />
+		</Unit>
+		<Unit filename="Utilities.cpp" />
+		<Unit filename="Utilities.hpp" />
+		<Unit filename="WorldAnimatedSprite.hpp">
+			<Option virtualFolder="Draw/realdrawables/" />
 		</Unit>
 		<Unit filename="WorldSprite.hpp">
-			<Option virtualFolder="Draw\realdrawables\" />
+			<Option virtualFolder="Draw/realdrawables/" />
 		</Unit>
 		<Unit filename="WorldString.hpp">
-			<Option virtualFolder="Draw\realdrawables\" />
+			<Option virtualFolder="Draw/realdrawables/" />
 		</Unit>
 		<Unit filename="main.cpp" />
 		<Extensions>

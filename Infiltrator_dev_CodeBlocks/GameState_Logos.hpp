@@ -12,6 +12,10 @@
 #include "GUIToggleButton.hpp"
 #include "GUITextfield.hpp"
 
+#include "WorldAnimatedSprite.hpp"
+
+class Player;
+
 class GameState_Logos : public GameState {
 private:
 	WorldSprite* mWorldSprite1;
@@ -26,6 +30,10 @@ private:
 	GUIButton* btn1;
 	GUIToggleButton* toggleBtn1;
 	GUITextfield* textField1;
+
+	WorldAnimatedSprite* mWAS;
+
+	Player* player;
 
 	unsigned int itSfVideoMode;
 

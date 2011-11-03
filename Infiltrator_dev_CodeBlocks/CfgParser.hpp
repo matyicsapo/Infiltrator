@@ -55,9 +55,7 @@ public:
         public:
             CfgEntries () : entries(new CfgEntryMap()) {}
 
-            CfgEntries (const CfgEntries& e) {
-                entries = new CfgEntryMap( *(e.entries) );
-            }
+            CfgEntries (const CfgEntries& e) { entries = new CfgEntryMap( *(e.entries) ); }
 
             ~CfgEntries () {
             	for (CfgEntryMap::iterator itEntries = entries->begin(); itEntries != entries->end(); itEntries++) {
@@ -67,7 +65,7 @@ public:
                 delete entries; entries = 0;
             }
 
-            std::string operator [] (std::string key) {
+            std::string operator[] (std::string key) {
             	std::string s("");
 
                 for (CfgEntryMap::iterator itEntries = entries->begin(); itEntries != entries->end(); itEntries++) {
@@ -82,17 +80,11 @@ public:
 				return s;
             }
 
-            CfgEntryMap::iterator GetIteratorBegin () {
-                return entries->begin();
-            }
+            CfgEntryMap::iterator GetIteratorBegin () { return entries->begin(); }
 
-            CfgEntryMap::iterator GetIteratorEnd () {
-                return entries->end();
-            }
+            CfgEntryMap::iterator GetIteratorEnd () { return entries->end(); }
 
-            const CfgEntryMap* GetVector () {
-				return entries;
-            }
+            const CfgEntryMap* GetVector () { return entries; }
 
             friend class CfgParser;
         };
@@ -109,7 +101,7 @@ public:
             };
         }
 
-        CfgEntries& operator [] (std::string section) {
+        CfgEntries& operator[] (std::string section) {
             for (CfgSectionMap::iterator itSections = sections.begin(); itSections != sections.end(); itSections++) {
 				if ( (*itSections)->first == section) {
 					return *(*itSections)->second;
@@ -119,13 +111,9 @@ public:
 			assert(0);
         }
 
-        CfgSectionMap::iterator GetIteratorBegin () {
-            return sections.begin();
-        }
+        CfgSectionMap::iterator GetIteratorBegin () { return sections.begin(); }
 
-        CfgSectionMap::iterator GetIteratorEnd () {
-            return sections.end();
-        }
+        CfgSectionMap::iterator GetIteratorEnd () { return sections.end(); }
 
         friend class CfgParser;
 	};

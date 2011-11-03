@@ -19691,7 +19691,7 @@
 1319033646 source:/home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/CfgParser.cpp
 	"CfgParser.hpp"
 
-1319034072 /home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/CfgParser.hpp
+1320228798 /home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/CfgParser.hpp
 	<string>
 	<map>
 	<fstream>
@@ -19699,7 +19699,7 @@
 	<cassert>
 	"Convert.hpp"
 
-1319034196 /home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/Convert.hpp
+1319998309 /home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/Convert.hpp
 	<boost/lexical_cast.hpp>
 
 1307031636 /home/matyi/Dev/Boost/boost_1_47_0/boost/lexical_cast.hpp
@@ -21237,7 +21237,7 @@
 1319396912 /home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/Drawable.hpp
 	"DrawableBase.hpp"
 
-1319635361 /home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/DrawableBase.hpp
+1319635362 /home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/DrawableBase.hpp
 	<SFML/Graphics.hpp>
 
 1319396388 /home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/ScreenSpaceDrawable.hpp
@@ -21258,10 +21258,10 @@
 	<SFML/Window.hpp>
 	<list>
 
-1319055748 /home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/GameState.hpp
+1320326713 /home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/GameState.hpp
 	"SFMLEventHandler.hpp"
 
-1319554924 /home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/Camera2D.hpp
+1320327227 /home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/Camera2D.hpp
 	<SFML/Graphics.hpp>
 
 1236010540 /home/matyi/Dev/Boost/boost_1_47_0/boost/bind.hpp
@@ -21384,7 +21384,7 @@
 1319551736 source:/home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/GUIButton.cpp
 	"GUIButton.hpp"
 
-1319634960 /home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/GUIButton.hpp
+1320233935 /home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/GUIButton.hpp
 	<boost/function.hpp>
 	"ScreenSpaceDrawable.hpp"
 	"Sprite.hpp"
@@ -21652,10 +21652,10 @@
 1090722569 /home/matyi/Dev/Boost/boost_1_47_0/boost/function/function10.hpp
 	<boost/function/detail/maybe_include.hpp>
 
-1319634932 /home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/Sprite.hpp
+1320052429 /home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/Sprite.hpp
 	"Drawable.hpp"
 
-1319526120 /home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/MyConstants.hpp
+1320233926 /home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/MyConstants.hpp
 	<SFML/System.hpp>
 	<string>
 
@@ -21663,7 +21663,7 @@
 	"GUITextfield.hpp"
 	<iostream>
 
-1319634968 /home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/GUITextfield.hpp
+1320233943 /home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/GUITextfield.hpp
 	"ScreenSpaceDrawable.hpp"
 	"Sprite.hpp"
 	"DrawableString.hpp"
@@ -21679,14 +21679,14 @@
 1319551702 source:/home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/GUIToggleButton.cpp
 	"GUIToggleButton.hpp"
 
-1319551658 /home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/GUIToggleButton.hpp
+1320233949 /home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/GUIToggleButton.hpp
 	"GUIButton.hpp"
 
 1319014816 source:/home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/GameState.cpp
 	"GameState.hpp"
 	"SFMLGameManager.hpp"
 
-1319635431 source:/home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/GameState_Logos.cpp
+1320352482 source:/home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/GameState_Logos.cpp
 	"GameState_Logos.hpp"
 	<boost/function.hpp>
 	<boost/bind.hpp>
@@ -21695,8 +21695,10 @@
 	<boost/lexical_cast.hpp>
 	<iostream>
 	"MyConstants.hpp"
+	"Player.hpp"
+	<iostream>
 
-1319573210 /home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/GameState_Logos.hpp
+1320326724 /home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/GameState_Logos.hpp
 	"GameState.hpp"
 	"WorldSprite.hpp"
 	"WorldString.hpp"
@@ -21705,6 +21707,7 @@
 	"GUIButton.hpp"
 	"GUIToggleButton.hpp"
 	"GUITextfield.hpp"
+	"WorldAnimatedSprite.hpp"
 
 1319396836 /home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/WorldSprite.hpp
 	"Drawable.hpp"
@@ -21722,7 +21725,7 @@
 	"ResourceManager.hpp"
 	<SFML/Graphics.hpp>
 
-1319554752 source:/home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/SFMLGameManager.cpp
+1320326711 source:/home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/SFMLGameManager.cpp
 	"SFMLGameManager.hpp"
 	"DrawManager.hpp"
 	"MyConstants.hpp"
@@ -21734,4 +21737,44 @@
 1319012536 source:/home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/main.cpp
 	"SFMLGameManager.hpp"
 	"GameState_Logos.hpp"
+
+1320228506 source:/home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/AnimateSprite.cpp
+	"AnimatedSprite.hpp"
+	"SpriteAnimationManager.hpp"
+
+1320228453 /home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/AnimatedSprite.hpp
+	"Sprite.hpp"
+
+1320011256 /home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/SpriteAnimationManager.hpp
+	<string>
+	<map>
+
+1320055331 source:/home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/SpriteAnimationManager.cpp
+	"SpriteAnimationManager.hpp"
+	"CfgParser.hpp"
+
+1320052536 /home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/WorldAnimatedSprite.hpp
+	"Drawable.hpp"
+	"AnimatedSprite.hpp"
+
+1320356650 source:/home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/Player.cpp
+	"Player.hpp"
+	<cmath>
+	"WorldAnimatedSprite.hpp"
+	"SpriteAnimationManager.hpp"
+	"DrawManager.hpp"
+	"MyConstants.hpp"
+	"Utilities.hpp"
+	"SFMLGameManager.hpp"
+
+1320356173 /home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/Player.hpp
+	<SFML/Window.hpp>
+	<string>
+
+1320355782 /home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/Utilities.hpp
+	<SFML/System.hpp>
+
+1320355828 source:/home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/Utilities.cpp
+	"Utilities.hpp"
+	<cmath>
 

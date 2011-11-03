@@ -11,7 +11,7 @@ protected:
 	virtual void SetFakePos (sf::Vector2f fakePos) { sfSprite->SetPosition(fakePos); }
 
 public:
-	Sprite (float layerDepth) : DrawableBase(layerDepth) {}
+	Sprite (float layerDepth) : DrawableBase(layerDepth), sfSprite(0) {}
 	Sprite (std::string textureFile, float layerDepth);
     Sprite (Sprite const& sprite) : DrawableBase(sprite)
 		{ sfSprite = new sf::Sprite( *(sprite.sfSprite) ); }
@@ -22,7 +22,7 @@ public:
 
     virtual void SetColor (sf::Color color) { sfSprite->SetColor(color); }
 
-	void SetImage (std::string textureFile);
+	virtual void SetImage (std::string textureFile);
 
 	virtual void SetRotation (float rotation) { sfSprite->SetRotation(rotation); }
 	virtual float GetRotation () { return sfSprite->GetRotation(); }

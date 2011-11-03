@@ -1,0 +1,9 @@
+[player_walk]
+#file=/home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/Content/Textures/Animated/PlayerSpriteSheet.png
+file=Content/Textures/Animated/PlayerSpriteSheet.png
+FPS=24
+frameCnt=20
+startX=0
+startY=0
+width=120
+height=120

@@ -13,7 +13,12 @@
 
 #include "MyConstants.hpp"
 
+#include "Player.hpp"
+
 GameState_Logos::GameState_Logos () {
+	player = new Player();
+	player->SetPosition(sf::Vector2f(512, 384));
+
 	mWorldSprite1 = new WorldSprite("Content/Textures/sprite.png");
 	DrawManager::Instance()->Add(mWorldSprite1);
 	mWorldSprite1->SetPosition(sf::Vector2f(600, 100));
@@ -44,8 +49,8 @@ GameState_Logos::GameState_Logos () {
 						"Content/Textures/btnActive.png",
 						onClick,
 						"gfx",
-						MyConstants::defaultFontFile,
-						MyConstants::fontSize,
+						MConst::defaultFontFile,
+						MConst::fontSize,
 						ScreenSpaceDrawable::CENTER, ScreenSpaceDrawable::TOP);
 	btn1->SetScale(sf::Vector2f(4, 4));
 	DrawManager::Instance()->AddScreenSpace(btn1);
@@ -58,8 +63,8 @@ GameState_Logos::GameState_Logos () {
 						0,
 						0,
 						"",
-						MyConstants::defaultFontFile,
-						MyConstants::fontSize,
+						MConst::defaultFontFile,
+						MConst::fontSize,
 						ScreenSpaceDrawable::CENTER, ScreenSpaceDrawable::TOP);
 	toggleBtn1->SetScale(sf::Vector2f(3, 3));
 	DrawManager::Instance()->AddScreenSpace(toggleBtn1);
@@ -68,7 +73,7 @@ GameState_Logos::GameState_Logos () {
 	textField1 = new GUITextfield("Content/Textures/toggle_inactive_normal.png",
 								"Content/Textures/toggle_active_normal.png",
 								"starttext",
-								MyConstants::defaultFontFile,
+								MConst::defaultFontFile,
 								24,
 								ScreenSpaceDrawable::LEFT, ScreenSpaceDrawable::BOTTOM,
 								-100);
@@ -177,6 +182,11 @@ void GameState_Logos::HandleEvents(std::list<sf::Event>& sfEvents) {
 					break;
 				}
 			break;
+/*
+case sf::Event::MouseButtonPressed:
+	mWAS->ChangeFrame();
+break;
+*/
 			default:
 				// supress warnings
 			break;
@@ -190,23 +200,9 @@ void GameState_Logos::Enter () {
 }
 
 void GameState_Logos::Update (float dT) {
-	float spd = 350;
-	sf::Vector2f viewOffset;
 	const sf::Input& sfInput = SFMLGameManager::Instance()->GetRenderWindow()->GetInput();
-	if (sfInput.IsKeyDown(sf::Key::Left)) {
-		viewOffset.x -= spd * dT;
-	}
-	else if (sfInput.IsKeyDown(sf::Key::Right)) {
-		viewOffset.x += spd * dT;
-	}
-	if (sfInput.IsKeyDown(sf::Key::Up)) {
-		viewOffset.y -= spd * dT;
-	}
-	else if (sfInput.IsKeyDown(sf::Key::Down)) {
-		viewOffset.y += spd * dT;
-	}
-	SFMLGameManager::Instance()->GetWorldCamera2D()->Move(viewOffset);
-	//mScreenString1->Move(viewOffset);
+
+
 
 	float zoomSpd = 5;
 	float zoomFactor = 1;
@@ -218,6 +214,57 @@ void GameState_Logos::Update (float dT) {
 	}
 	SFMLGameManager::Instance()->GetWorldCamera2D()->Zoom(zoomFactor);
 	//mScreenString1->Rotate(zoomFactor);
+
+	float camSpd = 350;
+	sf::Vector2f viewOffset;
+	if (sfInput.IsKeyDown(sf::Key::Left)) {
+		viewOffset.x -= camSpd * dT;
+	}
+	else if (sfInput.IsKeyDown(sf::Key::Right)) {
+		viewOffset.x += camSpd * dT;
+	}
+	if (sfInput.IsKeyDown(sf::Key::Up)) {
+		viewOffset.y -= camSpd * dT;
+	}
+	else if (sfInput.IsKeyDown(sf::Key::Down)) {
+		viewOffset.y += camSpd * dT;
+	}
+	SFMLGameManager::Instance()->GetWorldCamera2D()->Move(viewOffset);
+	mScreenString1->Move(viewOffset);
+
+
+
+#include <iostream>
+
+/**/
+	// keyboard
+	int l = -sfInput.IsKeyDown(sf::Key::A);
+	int r = sfInput.IsKeyDown(sf::Key::D);
+	int x = l + r;
+	int u = -sfInput.IsKeyDown(sf::Key::W);
+	int d = sfInput.IsKeyDown(sf::Key::S);
+	int y = u + d;
+
+	player->WalkInDir(dT, sf::Vector2f(x, y) * 11123.0f);
+/**/
+
+/**/
+	// mouse
+	if (sfInput.IsMouseButtonDown(sf::Mouse::Left)) {
+		sf::Vector2f target =
+			SFMLGameManager::Instance()->GetRenderWindow()->ConvertCoords(
+				sfInput.GetMouseX(),
+				sfInput.GetMouseY());
+		target = sf::Vector2f(
+			target.x * (MConst::baseResolution.x / SFMLGameManager::Instance()->GetRenderWindow()->GetWidth()),
+			target.y * (MConst::baseResolution.y / SFMLGameManager::Instance()->GetRenderWindow()->GetHeight()));
+
+		//player->WalkInDir(dT, target - player->GetPosition()); // not good for mouse
+		//player->LookAt(target);
+		player->WalkTowards(dT, target);
+	}
+/**/
+
 }
 
 void GameState_Logos::Exit () {

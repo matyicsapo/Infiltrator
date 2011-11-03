@@ -58,17 +58,17 @@ int SFMLGameManager::Run () {
     		if (event.Type == sf::Event::Resized) {
 				reset = true;
     		}
-
-			// minden event összegyûjtése továbbadásra
-			sfEvents.push_front(event);
+    		else
+				// "minden" event összegyûjtése továbbadásra
+				sfEvents.push_front(event);
     	}
 
 		if (mGameStateMachine) mGameStateMachine->HandleEvents(sfEvents);
 
 		float windowFakeScale = 0;
 		if (reset) {
-			sf::Vector2f scaleV( (win.GetWidth()) / MyConstants::baseResolution.x,
-								(win.GetHeight()) / MyConstants::baseResolution.y);
+			sf::Vector2f scaleV( (win.GetWidth()) / MConst::baseResolution.x,
+								(win.GetHeight()) / MConst::baseResolution.y);
 
 			windowFakeScale = scaleV.x < scaleV.y ? scaleV.x : scaleV.y;
 
@@ -76,6 +76,8 @@ int SFMLGameManager::Run () {
 		}
 
 		win.SetView(worldCamera2D.GetSfView());
+
+		worldCamera2D.SetFakeScale(windowFakeScale);
 
         // ha a kép teljes egésze felülrajzolódik akkor a képernyõtörlés redundáns
         if (bClear) win.Clear(clearColor);

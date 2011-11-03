@@ -1,0 +1,105 @@
+#include "GameState_MainMenu.hpp"
+
+#include "MenuState_Main.hpp"
+
+#include <list>
+
+
+
+	#include <iostream>
+	#include <boost/lexical_cast.hpp>
+
+
+
+GameState_MainMenu::GameState_MainMenu () : menuStateMachine(0) {
+	menuStateMachine = new MenuStateMachine();
+	MenuState* mainMenuState = new MenuState_Main(menuStateMachine);
+	menuStateMachine->SetCurrentState(mainMenuState);
+
+	background = new Sprite("Content/Textures/background_waterfall.jpg");
+
+	sf::Vector2f baseScale(1, 1);
+	sf::Sprite* sfSprite = dynamic_cast<sf::Sprite*>(background->GetSfDrawable());
+	background->SetScale( (float)sfSprite->GetImage()->GetWidth() / (float)SFMLGameManager::Instance()->GetRenderWindow()->GetWidth() * baseScale.x,
+						(float)sfSprite->GetImage()->GetHeight() / (float)SFMLGameManager::Instance()->GetRenderWindow()->GetHeight() * baseScale.y);
+	background->SetPosition(SFMLGameManager::Instance()->GetRenderWindow()->GetWidth() / 2 + offset.x,
+					SFMLGameManager::Instance()->GetRenderWindow()->GetHeight() / 2 + offset.y);
+}
+
+void GameState_MainMenu::Enter () {
+	//SFMLGameManager::Instance()->SetClear(false);
+}
+
+void GameState_MainMenu::Execute () {
+/* ******************************************************************** */
+	const sf::Input& sfInput = SFMLGameManager::Instance()->GetRenderWindow()->GetInput();
+
+
+	DrawableString ds(boost::lexical_cast<std::string>(sfInput.GetMouseX()) + " " + boost::lexical_cast<std::string>(sfInput.GetMouseY()),
+											"Content/Fonts/Cardinal/Cardinal.ttf",
+											22);
+	ds.SetPosition(SFMLGameManager::Instance()->GetRenderWindow()->GetWidth() / 2 - 200,
+					SFMLGameManager::Instance()->GetRenderWindow()->GetHeight() / 2);
+
+
+	float camScrollSpeed = 1000;
+	if (sfInput.IsKeyDown(sf::Key::Up)) {
+		offset.y += camScrollSpeed * SFMLGameManager::Instance()->GetRenderWindow()->GetFrameTime();
+	}
+	else if (sfInput.IsKeyDown(sf::Key::Down)) {
+		offset.y -= camScrollSpeed * SFMLGameManager::Instance()->GetRenderWindow()->GetFrameTime();
+	}
+	if (sfInput.IsKeyDown(sf::Key::Left)) {
+		offset.x += camScrollSpeed * SFMLGameManager::Instance()->GetRenderWindow()->GetFrameTime();
+	}
+	else if (sfInput.IsKeyDown(sf::Key::Right)) {
+		offset.x -= camScrollSpeed * SFMLGameManager::Instance()->GetRenderWindow()->GetFrameTime();
+	}
+
+
+	if (sfInput.IsKeyDown(sf::Key::Space)) {
+		SFMLGameManager::Instance()->Create(1000, 600);
+	}
+/* ******************************************************************** */
+
+	sf::Vector2f baseScale(1, 1);
+	sf::Sprite* sfSprite = dynamic_cast<sf::Sprite*>(background->GetSfDrawable());
+	background->SetScale( (float)sfSprite->GetImage()->GetWidth() / (float)SFMLGameManager::Instance()->GetRenderWindow()->GetWidth() * baseScale.x,
+						(float)sfSprite->GetImage()->GetHeight() / (float)SFMLGameManager::Instance()->GetRenderWindow()->GetHeight() * baseScale.y);
+	background->SetPosition(SFMLGameManager::Instance()->GetRenderWindow()->GetWidth() / 2 + offset.x,
+					SFMLGameManager::Instance()->GetRenderWindow()->GetHeight() / 2 + offset.y);
+
+	background->Draw();
+
+
+	ds.Draw();
+
+
+	menuStateMachine->Update();
+}
+
+void GameState_MainMenu::Exit () {
+	SFMLGameManager::Instance()->SetClear(true);
+}
+
+void GameState_MainMenu::HandleEvents (sf::RenderWindow& mainWindow) {
+	std::list<sf::Event> sfEvents;
+
+	sf::Event event;
+	while (mainWindow.GetEvent(event)) {
+		if (event.Type == sf::Event::Closed || (event.Type == sf::Event::KeyPressed && event.Key.Code == sf::Key::Escape) ) {
+			mainWindow.Close();
+			return; // just to make super sure it stops when it has to..it should...bad i know
+		}
+		else if (event.Type == sf::Event::MouseMoved
+				|| event.Type == sf::Event::MouseButtonPressed
+				//|| event.Type == sf::Event::MouseButtonReleased // can kill event handling!..?:S
+				) {
+			sfEvents.push_front(event);
+		}
+	}
+
+	if (!sfEvents.empty()) {
+		menuStateMachine->HandleEvents(sfEvents);
+	}
+}
