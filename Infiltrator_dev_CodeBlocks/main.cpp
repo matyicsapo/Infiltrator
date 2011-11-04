@@ -9,11 +9,11 @@ int main () {
 	//GameState* xInitialGameState = new GameState_MainMenu();
 	GameStateMachine* xGameStateMachine = new GameStateMachine(xInitialGameState);
 
-	SFMLGameManager::Instance()->SetGameStateMachine(xGameStateMachine);
+	Game->SetGameStateMachine(xGameStateMachine);
 
 	xInitialGameState->Enter();
 
-	int result = SFMLGameManager::Instance()->Run();
+	int result = Game->Run();
 
 	return result;
 }

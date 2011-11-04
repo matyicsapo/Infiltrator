@@ -5,7 +5,7 @@
 		<Option title="Infiltrator_dev_CodeBlocks" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
-		<Option virtualFolders="GameStates/;Draw/;Draw/abstract/;Draw/realdrawables/;Draw/realdrawables/GUI stuff/;" />
+		<Option virtualFolders="GameStates/;Draw/;Draw/realdrawables/;Draw/realdrawables/abstract/;Draw/realdrawables/GUI stuff/;" />
 		<Build>
 			<Target title="Debug">
 				<Option output="bin/Debug/Infiltrator_dev_CodeBlocks" prefix_auto="1" extension_auto="1" />
@@ -41,12 +41,11 @@
 			<Add option="-Wall" />
 		</Compiler>
 		<Unit filename="AnimateSprite.cpp">
-			<Option virtualFolder="Draw/abstract/" />
+			<Option virtualFolder="Draw/realdrawables/abstract/" />
 		</Unit>
 		<Unit filename="AnimatedSprite.hpp">
-			<Option virtualFolder="Draw/abstract/" />
+			<Option virtualFolder="Draw/realdrawables/abstract/" />
 		</Unit>
-		<Unit filename="Camera2D.hpp" />
 		<Unit filename="CfgParser.cpp" />
 		<Unit filename="CfgParser.hpp" />
 		<Unit filename="Convert.cpp" />
@@ -58,16 +57,16 @@
 			<Option virtualFolder="Draw/" />
 		</Unit>
 		<Unit filename="Drawable.hpp">
-			<Option virtualFolder="Draw/abstract/" />
+			<Option virtualFolder="Draw/realdrawables/abstract/" />
 		</Unit>
 		<Unit filename="DrawableBase.hpp">
-			<Option virtualFolder="Draw/abstract/" />
+			<Option virtualFolder="Draw/realdrawables/abstract/" />
 		</Unit>
 		<Unit filename="DrawableString.cpp">
-			<Option virtualFolder="Draw/abstract/" />
+			<Option virtualFolder="Draw/realdrawables/abstract/" />
 		</Unit>
 		<Unit filename="DrawableString.hpp">
-			<Option virtualFolder="Draw/abstract/" />
+			<Option virtualFolder="Draw/realdrawables/abstract/" />
 		</Unit>
 		<Unit filename="GUIButton.cpp">
 			<Option virtualFolder="Draw/realdrawables/GUI stuff/" />
@@ -111,7 +110,7 @@
 		<Unit filename="SFMLGameManager.cpp" />
 		<Unit filename="SFMLGameManager.hpp" />
 		<Unit filename="ScreenSpaceDrawable.hpp">
-			<Option virtualFolder="Draw/abstract/" />
+			<Option virtualFolder="Draw/realdrawables/abstract/" />
 		</Unit>
 		<Unit filename="ScreenSprite.hpp">
 			<Option virtualFolder="Draw/realdrawables/" />
@@ -120,10 +119,10 @@
 			<Option virtualFolder="Draw/realdrawables/" />
 		</Unit>
 		<Unit filename="Sprite.cpp">
-			<Option virtualFolder="Draw/abstract/" />
+			<Option virtualFolder="Draw/realdrawables/abstract/" />
 		</Unit>
 		<Unit filename="Sprite.hpp">
-			<Option virtualFolder="Draw/abstract/" />
+			<Option virtualFolder="Draw/realdrawables/abstract/" />
 		</Unit>
 		<Unit filename="SpriteAnimationManager.cpp">
 			<Option virtualFolder="Draw/" />
@@ -136,6 +135,8 @@
 		<Unit filename="WorldAnimatedSprite.hpp">
 			<Option virtualFolder="Draw/realdrawables/" />
 		</Unit>
+		<Unit filename="WorldCamera2D.cpp" />
+		<Unit filename="WorldCamera2D.hpp" />
 		<Unit filename="WorldSprite.hpp">
 			<Option virtualFolder="Draw/realdrawables/" />
 		</Unit>

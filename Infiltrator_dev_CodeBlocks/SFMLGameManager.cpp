@@ -4,7 +4,7 @@
 #include "MyConstants.hpp"
 
 SFMLGameManager::SFMLGameManager () : mGameStateMachine(0),
-										worldCamera2D(sf::FloatRect(0, 0, 800, 600), .5, 2),
+										mWorldCamera2D(sf::FloatRect(0, 0, 800, 600), .5, 2),
 										bClear(true),
 										clearColor(0, 128, 0) {
 	Create(800, 600, false);
@@ -48,6 +48,8 @@ void SFMLGameManager::Create (unsigned int width, unsigned int height) {
     //win.SetFramerateLimit(60);
 
     reset = true;
+
+    win.EnableKeyRepeat(false);
 }
 
 int SFMLGameManager::Run () {
@@ -72,12 +74,15 @@ int SFMLGameManager::Run () {
 
 			windowFakeScale = scaleV.x < scaleV.y ? scaleV.x : scaleV.y;
 
-			worldCamera2D.Reset(win);
+			mWorldCamera2D.SetFakeScale(windowFakeScale);
+
+			mWorldCamera2D.Reset(win);
+		}
+		else {
+			mWorldCamera2D.SetFakeScale(windowFakeScale);
 		}
 
-		win.SetView(worldCamera2D.GetSfView());
-
-		worldCamera2D.SetFakeScale(windowFakeScale);
+		win.SetView(mWorldCamera2D.GetSfView());
 
         // ha a kép teljes egésze felülrajzolódik akkor a képernyõtörlés redundáns
         if (bClear) win.Clear(clearColor);
@@ -96,7 +101,7 @@ int SFMLGameManager::Run () {
     }
 
 	// deleting game, should delete everything which is pretty much fine since the program is about to close
-	// also and more important actually, any dumbfuck mistakes leaving some drawable's still alive can now be
+	// also and more important actually, any dumb mistakes leaving some drawable's still alive can now be
 	// safely deleted by the DrawManager
     delete mGameStateMachine; mGameStateMachine = 0;
 

@@ -7,7 +7,7 @@ void GameState::HandleEvents (std::list<sf::Event>& sfEvents) {
 	while (itSfEvent != sfEvents.end()) {
 		switch (itSfEvent->Type) {
 			case sf::Event::Closed:
-				SFMLGameManager::Instance()->GetRenderWindow()->Close();
+				Game->GetRenderWindow()->Close();
 			break;
 			default:
 			break;

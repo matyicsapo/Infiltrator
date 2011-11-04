@@ -15,9 +15,15 @@
 
 #include "Player.hpp"
 
+#include "Input.hpp"
+
 GameState_Logos::GameState_Logos () {
+	mCrosshair = new ScreenSprite("Content/Textures/crosshair.png",
+		ScreenSpaceDrawable::CENTER, ScreenSpaceDrawable::MIDDLE, 100);
+	DrawManager::Instance()->AddScreenSpace(mCrosshair);
+
 	player = new Player();
-	player->SetPosition(sf::Vector2f(512, 384));
+	//player->SetPosition(sf::Vector2f(512, 384));
 
 	mWorldSprite1 = new WorldSprite("Content/Textures/sprite.png");
 	DrawManager::Instance()->Add(mWorldSprite1);
@@ -109,6 +115,9 @@ GameState_Logos::~GameState_Logos () {
 	DrawManager::Instance()->PopScreenSpace(textField1);
 	delete textField1;
 
+	DrawManager::Instance()->PopScreenSpace(mCrosshair);
+	delete mCrosshair;
+
 	DrawManager::Instance()->ClearAll();
 }
 
@@ -121,19 +130,19 @@ void GameState_Logos::HandleEvents(std::list<sf::Event>& sfEvents) {
 	while (itSfEvent != sfEvents.end()) {
 		switch (itSfEvent->Type) {
 			case sf::Event::Closed:
-				SFMLGameManager::Instance()->GetRenderWindow()->Close();
+				Game->GetRenderWindow()->Close();
 			break;
 			case sf::Event::KeyPressed:
 				switch (itSfEvent->Key.Code) {
 					case sf::Key::Escape:
-						SFMLGameManager::Instance()->GetRenderWindow()->Close();
+						Game->GetRenderWindow()->Close();
 					break;
 					case sf::Key::F:
-						SFMLGameManager::Instance()->ToggleFullScreen();
+						Game->ToggleFullScreen();
 					break;
 					case sf::Key::C: {
 
-						if (SFMLGameManager::Instance()->IsFullScreen()) {
+						if (Game->IsFullScreen()) {
 							// try to skip non monitor aspect ratio fullscreen resolutions
 							// base on the "assumption" that the 0th mode as being the best is of the monitor's
 								// aspect ratio
@@ -173,7 +182,7 @@ void GameState_Logos::HandleEvents(std::list<sf::Event>& sfEvents) {
 							}
 						}
 
-						SFMLGameManager::Instance()->Create(sf::VideoMode::GetMode(itSfVideoMode).Width,
+						Game->Create(sf::VideoMode::GetMode(itSfVideoMode).Width,
 															sf::VideoMode::GetMode(itSfVideoMode).Height);
 
 					} break;
@@ -200,7 +209,7 @@ void GameState_Logos::Enter () {
 }
 
 void GameState_Logos::Update (float dT) {
-	const sf::Input& sfInput = SFMLGameManager::Instance()->GetRenderWindow()->GetInput();
+	const sf::Input& sfInput = Game->GetRenderWindow()->GetInput();
 
 
 
@@ -212,7 +221,7 @@ void GameState_Logos::Update (float dT) {
 	else if (sfInput.IsKeyDown(sf::Key::Subtract)) {
 		zoomFactor -= zoomSpd * dT;
 	}
-	SFMLGameManager::Instance()->GetWorldCamera2D()->Zoom(zoomFactor);
+	Game->GetWorldCamera2D()->Zoom(zoomFactor);
 	//mScreenString1->Rotate(zoomFactor);
 
 	float camSpd = 350;
@@ -229,7 +238,7 @@ void GameState_Logos::Update (float dT) {
 	else if (sfInput.IsKeyDown(sf::Key::Down)) {
 		viewOffset.y += camSpd * dT;
 	}
-	SFMLGameManager::Instance()->GetWorldCamera2D()->Move(viewOffset);
+	Game->GetWorldCamera2D()->Move(viewOffset);
 	mScreenString1->Move(viewOffset);
 
 
@@ -245,19 +254,21 @@ void GameState_Logos::Update (float dT) {
 	int d = sfInput.IsKeyDown(sf::Key::S);
 	int y = u + d;
 
-	player->WalkInDir(dT, sf::Vector2f(x, y) * 11123.0f);
+	player->WalkInDir(dT, sf::Vector2f(x, y) * 11123.0f); // will be normalized - noprob
 /**/
 
 /**/
 	// mouse
 	if (sfInput.IsMouseButtonDown(sf::Mouse::Left)) {
 		sf::Vector2f target =
-			SFMLGameManager::Instance()->GetRenderWindow()->ConvertCoords(
+			Game->GetRenderWindow()->ConvertCoords(
 				sfInput.GetMouseX(),
 				sfInput.GetMouseY());
 		target = sf::Vector2f(
-			target.x * (MConst::baseResolution.x / SFMLGameManager::Instance()->GetRenderWindow()->GetWidth()),
-			target.y * (MConst::baseResolution.y / SFMLGameManager::Instance()->GetRenderWindow()->GetHeight()));
+			target.x * (MConst::baseResolution.x / Game->GetRenderWindow()->GetWidth()),
+			target.y * (MConst::baseResolution.y / Game->GetRenderWindow()->GetHeight()));
+
+		//Game->GetWorldCamera2D()->SetCenter(target);
 
 		//player->WalkInDir(dT, target - player->GetPosition()); // not good for mouse
 		//player->LookAt(target);

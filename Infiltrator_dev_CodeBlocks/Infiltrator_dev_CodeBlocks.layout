@@ -7,9 +7,6 @@
 	<File name="AnimatedSprite.hpp" open="0" top="0" tabpos="1">
 		<Cursor position="598" topLine="0" />
 	</File>
-	<File name="Camera2D.hpp" open="1" top="0" tabpos="6">
-		<Cursor position="101" topLine="6" />
-	</File>
 	<File name="CfgParser.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="3428" topLine="65" />
 	</File>
@@ -40,14 +37,14 @@
 	<File name="DrawableString.hpp" open="0" top="0" tabpos="7">
 		<Cursor position="1574" topLine="9" />
 	</File>
-	<File name="GUIButton.cpp" open="1" top="0" tabpos="5">
+	<File name="GUIButton.cpp" open="0" top="0" tabpos="5">
 		<Cursor position="24" topLine="0" />
 	</File>
 	<File name="GUIButton.hpp" open="0" top="0" tabpos="3">
-		<Cursor position="972" topLine="20" />
+		<Cursor position="972" topLine="35" />
 	</File>
 	<File name="GUITextfield.cpp" open="0" top="0" tabpos="4">
-		<Cursor position="485" topLine="12" />
+		<Cursor position="2567" topLine="60" />
 	</File>
 	<File name="GUITextfield.hpp" open="0" top="0" tabpos="3">
 		<Cursor position="916" topLine="17" />
@@ -59,7 +56,7 @@
 		<Cursor position="525" topLine="2" />
 	</File>
 	<File name="GameState.cpp" open="0" top="0" tabpos="5">
-		<Cursor position="398" topLine="0" />
+		<Cursor position="287" topLine="0" />
 	</File>
 	<File name="GameState.hpp" open="0" top="0" tabpos="4">
 		<Cursor position="281" topLine="0" />
@@ -67,38 +64,38 @@
 	<File name="GameStateMachine.hpp" open="0" top="0" tabpos="3">
 		<Cursor position="546" topLine="2" />
 	</File>
-	<File name="GameState_Logos.cpp" open="1" top="1" tabpos="1">
-		<Cursor position="7863" topLine="250" />
+	<File name="GameState_Logos.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="6736" topLine="248" />
 	</File>
-	<File name="GameState_Logos.hpp" open="0" top="0" tabpos="1">
-		<Cursor position="868" topLine="0" />
+	<File name="GameState_Logos.hpp" open="1" top="0" tabpos="1">
+		<Cursor position="245" topLine="0" />
 	</File>
 	<File name="MyConstants.hpp" open="0" top="0" tabpos="3">
 		<Cursor position="331" topLine="0" />
 	</File>
-	<File name="Player.cpp" open="1" top="0" tabpos="2">
-		<Cursor position="1269" topLine="25" />
+	<File name="Player.cpp" open="0" top="0" tabpos="2">
+		<Cursor position="2939" topLine="77" />
 	</File>
-	<File name="Player.hpp" open="1" top="0" tabpos="3">
-		<Cursor position="639" topLine="0" />
+	<File name="Player.hpp" open="0" top="0" tabpos="3">
+		<Cursor position="362" topLine="0" />
 	</File>
 	<File name="ResourceManager.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="361" topLine="0" />
+		<Cursor position="165" topLine="0" />
 	</File>
 	<File name="ResourceManager.hpp" open="0" top="0" tabpos="0">
-		<Cursor position="262" topLine="0" />
+		<Cursor position="409" topLine="0" />
 	</File>
 	<File name="SFMLEventHandler.hpp" open="0" top="0" tabpos="10">
 		<Cursor position="139" topLine="0" />
 	</File>
-	<File name="SFMLGameManager.cpp" open="1" top="0" tabpos="4">
-		<Cursor position="1735" topLine="46" />
+	<File name="SFMLGameManager.cpp" open="1" top="1" tabpos="3">
+		<Cursor position="294" topLine="0" />
 	</File>
 	<File name="SFMLGameManager.hpp" open="0" top="0" tabpos="2">
-		<Cursor position="606" topLine="9" />
+		<Cursor position="639" topLine="28" />
 	</File>
 	<File name="ScreenSpaceDrawable.hpp" open="0" top="0" tabpos="6">
-		<Cursor position="450" topLine="0" />
+		<Cursor position="1141" topLine="16" />
 	</File>
 	<File name="ScreenSprite.hpp" open="0" top="0" tabpos="0">
 		<Cursor position="549" topLine="0" />
@@ -119,18 +116,21 @@
 		<Cursor position="375" topLine="0" />
 	</File>
 	<File name="Utilities.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="337" topLine="0" />
+		<Cursor position="195" topLine="0" />
 	</File>
 	<File name="Utilities.hpp" open="0" top="0" tabpos="0">
-		<Cursor position="269" topLine="0" />
+		<Cursor position="345" topLine="0" />
 	</File>
 	<File name="WorldAnimatedSprite.hpp" open="0" top="0" tabpos="0">
 		<Cursor position="437" topLine="0" />
+	</File>
+	<File name="WorldCamera2D.hpp" open="0" top="0" tabpos="6">
+		<Cursor position="1440" topLine="36" />
 	</File>
 	<File name="WorldString.hpp" open="0" top="0" tabpos="0">
 		<Cursor position="68" topLine="0" />
 	</File>
 	<File name="main.cpp" open="0" top="0" tabpos="4">
-		<Cursor position="115" topLine="0" />
+		<Cursor position="407" topLine="0" />
 	</File>
 </CodeBlocks_layout_file>

@@ -21240,15 +21240,16 @@
 1319635362 /home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/DrawableBase.hpp
 	<SFML/Graphics.hpp>
 
-1319396388 /home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/ScreenSpaceDrawable.hpp
+1320413308 /home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/ScreenSpaceDrawable.hpp
 	"SFMLGameManager.hpp"
 	"DrawableBase.hpp"
 
-1319526256 /home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/SFMLGameManager.hpp
+1320416788 /home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/SFMLGameManager.hpp
 	<SFML/Graphics.hpp>
 	<list>
 	"GameStateMachine.hpp"
-	"Camera2D.hpp"
+	"WorldCamera2D.hpp"
+	"Input.hpp"
 
 1319038552 /home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/GameStateMachine.hpp
 	"SFMLEventHandler.hpp"
@@ -21261,7 +21262,7 @@
 1320326713 /home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/GameState.hpp
 	"SFMLEventHandler.hpp"
 
-1320327227 /home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/Camera2D.hpp
+1320407529 /home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/Camera2D.hpp
 	<SFML/Graphics.hpp>
 
 1236010540 /home/matyi/Dev/Boost/boost_1_47_0/boost/bind.hpp
@@ -21682,11 +21683,11 @@
 1320233949 /home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/GUIToggleButton.hpp
 	"GUIButton.hpp"
 
-1319014816 source:/home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/GameState.cpp
+1320413212 source:/home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/GameState.cpp
 	"GameState.hpp"
 	"SFMLGameManager.hpp"
 
-1320352482 source:/home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/GameState_Logos.cpp
+1320413448 source:/home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/GameState_Logos.cpp
 	"GameState_Logos.hpp"
 	<boost/function.hpp>
 	<boost/bind.hpp>
@@ -21696,9 +21697,10 @@
 	<iostream>
 	"MyConstants.hpp"
 	"Player.hpp"
+	"Input.hpp"
 	<iostream>
 
-1320326724 /home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/GameState_Logos.hpp
+1320400996 /home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/GameState_Logos.hpp
 	"GameState.hpp"
 	"WorldSprite.hpp"
 	"WorldString.hpp"
@@ -21725,7 +21727,7 @@
 	"ResourceManager.hpp"
 	<SFML/Graphics.hpp>
 
-1320326711 source:/home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/SFMLGameManager.cpp
+1320415499 source:/home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/SFMLGameManager.cpp
 	"SFMLGameManager.hpp"
 	"DrawManager.hpp"
 	"MyConstants.hpp"
@@ -21734,7 +21736,7 @@
 	"Sprite.hpp"
 	"ResourceManager.hpp"
 
-1319012536 source:/home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/main.cpp
+1320413305 source:/home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/main.cpp
 	"SFMLGameManager.hpp"
 	"GameState_Logos.hpp"
 
@@ -21757,7 +21759,7 @@
 	"Drawable.hpp"
 	"AnimatedSprite.hpp"
 
-1320356650 source:/home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/Player.cpp
+1320357028 source:/home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/Player.cpp
 	"Player.hpp"
 	<cmath>
 	"WorldAnimatedSprite.hpp"
@@ -21777,4 +21779,17 @@
 1320355828 source:/home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/Utilities.cpp
 	"Utilities.hpp"
 	<cmath>
+
+1320416798 /home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/Input.hpp
+	<SFML/Window/Input.hpp>
+	<SFML/Window/Event.hpp>
+
+1320415422 source:/home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/Input.cpp
+	"Input.hpp"
+
+1320414641 /home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/WorldCamera2D.hpp
+	<SFML/Graphics.hpp>
+
+1320414657 source:/home/matyi/Dev/Szakdolgozat/Infiltrator/Infiltrator_dev_CodeBlocks/WorldCamera2D.cpp
+	"WorldCamera2D.hpp"
 

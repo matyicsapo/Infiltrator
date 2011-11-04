@@ -27,6 +27,8 @@ private:
 
 	ScreenSprite* mScreenSprite1;
 
+	ScreenSprite* mCrosshair;
+
 	GUIButton* btn1;
 	GUIToggleButton* toggleBtn1;
 	GUITextfield* textField1;

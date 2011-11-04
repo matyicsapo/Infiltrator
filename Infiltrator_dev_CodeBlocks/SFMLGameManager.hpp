@@ -5,7 +5,8 @@
 #include <list>
 
 #include "GameStateMachine.hpp"
-#include "Camera2D.hpp"
+#include "WorldCamera2D.hpp"
+#include "Input.hpp"
 
 class SFMLGameManager {
 private:
@@ -13,7 +14,7 @@ private:
 
 	sf::RenderWindow win;
 
-	Camera2D worldCamera2D;
+	WorldCamera2D mWorldCamera2D;
 
 	std::list<sf::Event> sfEvents;
 
@@ -53,7 +54,9 @@ public:
 
 	sf::RenderWindow* GetRenderWindow () { return &win; }
 
-	Camera2D* GetWorldCamera2D () { return &worldCamera2D; }
+	WorldCamera2D* GetWorldCamera2D () { return &mWorldCamera2D; }
 };
+
+#define Game SFMLGameManager::Instance()
 
 #endif // SFMLGAMEMANAGER_HPP

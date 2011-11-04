@@ -24,10 +24,10 @@ protected:
 				fakePos.x = GetScreenSize().x / 2 + basePos.x * windowFakeScale;
 			break;
 			case CENTER:
-				fakePos.x = SFMLGameManager::Instance()->GetRenderWindow()->GetWidth() / 2 + basePos.x * windowFakeScale;
+				fakePos.x = Game->GetRenderWindow()->GetWidth() / 2 + basePos.x * windowFakeScale;
 			break;
 			case RIGHT:
-				fakePos.x = SFMLGameManager::Instance()->GetRenderWindow()->GetWidth() - GetScreenSize().x / 2 + basePos.x * windowFakeScale;
+				fakePos.x = Game->GetRenderWindow()->GetWidth() - GetScreenSize().x / 2 + basePos.x * windowFakeScale;
 			break;
 		}
 
@@ -36,10 +36,10 @@ protected:
 				fakePos.y = GetScreenSize().y / 2 + basePos.y * windowFakeScale;
 			break;
 			case MIDDLE:
-				fakePos.y = SFMLGameManager::Instance()->GetRenderWindow()->GetHeight() / 2 + basePos.y * windowFakeScale;
+				fakePos.y = Game->GetRenderWindow()->GetHeight() / 2 + basePos.y * windowFakeScale;
 			break;
 			case BOTTOM:
-				fakePos.y = SFMLGameManager::Instance()->GetRenderWindow()->GetHeight() - GetScreenSize().y / 2 + basePos.y * windowFakeScale;
+				fakePos.y = Game->GetRenderWindow()->GetHeight() - GetScreenSize().y / 2 + basePos.y * windowFakeScale;
 			break;
 		}
 
