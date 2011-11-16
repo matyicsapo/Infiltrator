@@ -1,36 +1,18 @@
-#ifndef PLAYER_HPP_INCLUDED
-#define PLAYER_HPP_INCLUDED
+#ifndef PLAYER_HPP
+#define PLAYER_HPP
 
-#include <SFML/Window.hpp>
-#include <string>
+#include "Character.hpp"
+#include "PFrameWork/SFMLEventHandler.hpp"
 
-class WorldAnimatedSprite;
-
-class Player {
-private:
-	WorldAnimatedSprite* was;
-
-	const sf::Vector2f baseLook; // unused variable
-	sf::Vector2f look; // unused variable *******************************************************
-
-	float walkSpd;
-	float turnSpd;
-
-	float TargetAngle (sf::Vector2f normalizedVToTarget);
-	float AngleBetween (sf::Vector2f nV1, sf::Vector2f nV2);
-
+class Player : public Character, public SFMLEventHandler {
 public:
-	Player ();
-	Player (Player const& xPlayer);
+	Player (int layerDepth = 0);
 
 	~Player ();
 
-	void LookAt (sf::Vector2f target);
+	virtual void Update (float dT);
 
-	void SetPosition (sf::Vector2f position);
-	sf::Vector2f GetPosition ();
-	void WalkInDir (float dT, sf::Vector2f direction, bool rotate = true);
-	void WalkTowards (float dT, sf::Vector2f targetWorldPos, bool rotate = true);
+	virtual void HandleSFEvents (std::list<sf::Event>& sfEvents);
 };
 
-#endif // PLAYER_HPP_INCLUDED
+#endif // PLAYER_HPP

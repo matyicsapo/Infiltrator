@@ -1,0 +1,8 @@
+[burn]
+file=Content/Textures/Animated/torch_anim.png
+FPS=24
+frameCnt=24
+startX=0
+startY=0
+width=42
+height=64

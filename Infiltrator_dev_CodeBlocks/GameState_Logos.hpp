@@ -1,20 +1,21 @@
 #ifndef GAMESTATE_LOGOS_HPP
 #define GAMESTATE_LOGOS_HPP
 
-#include "GameState.hpp"
+#include "PFrameWork/State/GameState.hpp"
 
-#include "WorldSprite.hpp"
-#include "WorldString.hpp"
-#include "ScreenString.hpp"
-#include "ScreenSprite.hpp"
+class WorldSprite;
+class WorldString;
+class ScreenString;
+class ScreenSprite;
 
-#include "GUIButton.hpp"
-#include "GUIToggleButton.hpp"
-#include "GUITextfield.hpp"
+class GUIButton;
+class GUIToggleButton;
+class GUITextfield;
 
-#include "WorldAnimatedSprite.hpp"
+class TimeAnimatedSprite;
 
 class Player;
+class Wall;
 
 class GameState_Logos : public GameState {
 private:
@@ -33,9 +34,12 @@ private:
 	GUIToggleButton* toggleBtn1;
 	GUITextfield* textField1;
 
-	WorldAnimatedSprite* mWAS;
+	TimeAnimatedSprite* fireClip;
 
 	Player* player;
+Player* player_collisiontest;
+
+	Wall* wall1;
 
 	unsigned int itSfVideoMode;
 
@@ -46,7 +50,7 @@ public:
 
 	~GameState_Logos ();
 
-	virtual void HandleEvents(std::list<sf::Event>& sfEvents);
+	virtual void HandleSFEvents(std::list<sf::Event>& sfEvents);
 
 	void Enter ();
 

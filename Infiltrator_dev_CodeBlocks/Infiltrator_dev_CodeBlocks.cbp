@@ -5,7 +5,6 @@
 		<Option title="Infiltrator_dev_CodeBlocks" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
-		<Option virtualFolders="GameStates/;Draw/;Draw/realdrawables/;Draw/realdrawables/abstract/;Draw/realdrawables/GUI stuff/;" />
 		<Build>
 			<Target title="Debug">
 				<Option output="bin/Debug/Infiltrator_dev_CodeBlocks" prefix_auto="1" extension_auto="1" />
@@ -40,109 +39,68 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="AnimateSprite.cpp">
-			<Option virtualFolder="Draw/realdrawables/abstract/" />
-		</Unit>
-		<Unit filename="AnimatedSprite.hpp">
-			<Option virtualFolder="Draw/realdrawables/abstract/" />
-		</Unit>
-		<Unit filename="CfgParser.cpp" />
-		<Unit filename="CfgParser.hpp" />
-		<Unit filename="Convert.cpp" />
-		<Unit filename="Convert.hpp" />
-		<Unit filename="DrawManager.cpp">
-			<Option virtualFolder="Draw/" />
-		</Unit>
-		<Unit filename="DrawManager.hpp">
-			<Option virtualFolder="Draw/" />
-		</Unit>
-		<Unit filename="Drawable.hpp">
-			<Option virtualFolder="Draw/realdrawables/abstract/" />
-		</Unit>
-		<Unit filename="DrawableBase.hpp">
-			<Option virtualFolder="Draw/realdrawables/abstract/" />
-		</Unit>
-		<Unit filename="DrawableString.cpp">
-			<Option virtualFolder="Draw/realdrawables/abstract/" />
-		</Unit>
-		<Unit filename="DrawableString.hpp">
-			<Option virtualFolder="Draw/realdrawables/abstract/" />
-		</Unit>
-		<Unit filename="GUIButton.cpp">
-			<Option virtualFolder="Draw/realdrawables/GUI stuff/" />
-		</Unit>
-		<Unit filename="GUIButton.hpp">
-			<Option virtualFolder="Draw/realdrawables/GUI stuff/" />
-		</Unit>
-		<Unit filename="GUITextfield.cpp">
-			<Option virtualFolder="Draw/realdrawables/GUI stuff/" />
-		</Unit>
-		<Unit filename="GUITextfield.hpp">
-			<Option virtualFolder="Draw/realdrawables/GUI stuff/" />
-		</Unit>
-		<Unit filename="GUIToggleButton.cpp">
-			<Option virtualFolder="Draw/realdrawables/GUI stuff/" />
-		</Unit>
-		<Unit filename="GUIToggleButton.hpp">
-			<Option virtualFolder="Draw/realdrawables/GUI stuff/" />
-		</Unit>
-		<Unit filename="GameState.cpp">
-			<Option virtualFolder="GameStates/" />
-		</Unit>
-		<Unit filename="GameState.hpp">
-			<Option virtualFolder="GameStates/" />
-		</Unit>
-		<Unit filename="GameStateMachine.hpp">
-			<Option virtualFolder="GameStates/" />
-		</Unit>
-		<Unit filename="GameState_Logos.cpp">
-			<Option virtualFolder="GameStates/" />
-		</Unit>
-		<Unit filename="GameState_Logos.hpp">
-			<Option virtualFolder="GameStates/" />
-		</Unit>
-		<Unit filename="MyConstants.hpp" />
+		<Unit filename="Character.cpp" />
+		<Unit filename="Character.hpp" />
+		<Unit filename="GameState_Logos.cpp" />
+		<Unit filename="GameState_Logos.hpp" />
+		<Unit filename="PFrameWork/ColliderManager.cpp" />
+		<Unit filename="PFrameWork/ColliderManager.hpp" />
+		<Unit filename="PFrameWork/ConfigParser.cpp" />
+		<Unit filename="PFrameWork/ConfigParser.hpp" />
+		<Unit filename="PFrameWork/Conversion.cpp" />
+		<Unit filename="PFrameWork/Conversion.hpp" />
+		<Unit filename="PFrameWork/DrawManager.cpp" />
+		<Unit filename="PFrameWork/DrawManager.hpp" />
+		<Unit filename="PFrameWork/GO/AnimatedSprite.cpp" />
+		<Unit filename="PFrameWork/GO/AnimatedSprite.hpp" />
+		<Unit filename="PFrameWork/GO/Colliders.hpp" />
+		<Unit filename="PFrameWork/GO/Drawable.hpp" />
+		<Unit filename="PFrameWork/GO/DrawableBase.hpp" />
+		<Unit filename="PFrameWork/GO/DrawableString.cpp" />
+		<Unit filename="PFrameWork/GO/DrawableString.hpp" />
+		<Unit filename="PFrameWork/GO/GUI/GUIButton.cpp" />
+		<Unit filename="PFrameWork/GO/GUI/GUIButton.hpp" />
+		<Unit filename="PFrameWork/GO/GUI/GUITextfield.cpp" />
+		<Unit filename="PFrameWork/GO/GUI/GUITextfield.hpp" />
+		<Unit filename="PFrameWork/GO/GUI/GUIToggleButton.cpp" />
+		<Unit filename="PFrameWork/GO/GUI/GUIToggleButton.hpp" />
+		<Unit filename="PFrameWork/GO/GameObject.hpp" />
+		<Unit filename="PFrameWork/GO/ScreenSpaceDrawable.cpp" />
+		<Unit filename="PFrameWork/GO/ScreenSpaceDrawable.hpp" />
+		<Unit filename="PFrameWork/GO/ScreenSprite.hpp" />
+		<Unit filename="PFrameWork/GO/ScreenString.hpp" />
+		<Unit filename="PFrameWork/GO/Shape.hpp" />
+		<Unit filename="PFrameWork/GO/Sprite.cpp" />
+		<Unit filename="PFrameWork/GO/Sprite.hpp" />
+		<Unit filename="PFrameWork/GO/TimeAnimatedSprite.cpp" />
+		<Unit filename="PFrameWork/GO/TimeAnimatedSprite.hpp" />
+		<Unit filename="PFrameWork/GO/WorldAnimatedSprite.hpp" />
+		<Unit filename="PFrameWork/GO/WorldDrawable.hpp" />
+		<Unit filename="PFrameWork/GO/WorldShape.hpp" />
+		<Unit filename="PFrameWork/GO/WorldSprite.hpp" />
+		<Unit filename="PFrameWork/GO/WorldString.hpp" />
+		<Unit filename="PFrameWork/GameObjectManager.cpp" />
+		<Unit filename="PFrameWork/GameObjectManager.hpp" />
+		<Unit filename="PFrameWork/PFWConstants.hpp" />
+		<Unit filename="PFrameWork/ResourceManager.cpp" />
+		<Unit filename="PFrameWork/ResourceManager.hpp" />
+		<Unit filename="PFrameWork/SFMLEventHandler.hpp" />
+		<Unit filename="PFrameWork/SFMLGameManager.cpp" />
+		<Unit filename="PFrameWork/SFMLGameManager.hpp" />
+		<Unit filename="PFrameWork/SpriteAnimationManager.cpp" />
+		<Unit filename="PFrameWork/SpriteAnimationManager.hpp" />
+		<Unit filename="PFrameWork/State/GameState.cpp" />
+		<Unit filename="PFrameWork/State/GameState.hpp" />
+		<Unit filename="PFrameWork/State/GameStateMachine.cpp" />
+		<Unit filename="PFrameWork/State/GameStateMachine.hpp" />
+		<Unit filename="PFrameWork/Utilities.cpp" />
+		<Unit filename="PFrameWork/Utilities.hpp" />
+		<Unit filename="PFrameWork/WorldCamera2D.cpp" />
+		<Unit filename="PFrameWork/WorldCamera2D.hpp" />
 		<Unit filename="Player.cpp" />
 		<Unit filename="Player.hpp" />
-		<Unit filename="ResourceManager.cpp" />
-		<Unit filename="ResourceManager.hpp" />
-		<Unit filename="SFMLEventHandler.hpp" />
-		<Unit filename="SFMLGameManager.cpp" />
-		<Unit filename="SFMLGameManager.hpp" />
-		<Unit filename="ScreenSpaceDrawable.hpp">
-			<Option virtualFolder="Draw/realdrawables/abstract/" />
-		</Unit>
-		<Unit filename="ScreenSprite.hpp">
-			<Option virtualFolder="Draw/realdrawables/" />
-		</Unit>
-		<Unit filename="ScreenString.hpp">
-			<Option virtualFolder="Draw/realdrawables/" />
-		</Unit>
-		<Unit filename="Sprite.cpp">
-			<Option virtualFolder="Draw/realdrawables/abstract/" />
-		</Unit>
-		<Unit filename="Sprite.hpp">
-			<Option virtualFolder="Draw/realdrawables/abstract/" />
-		</Unit>
-		<Unit filename="SpriteAnimationManager.cpp">
-			<Option virtualFolder="Draw/" />
-		</Unit>
-		<Unit filename="SpriteAnimationManager.hpp">
-			<Option virtualFolder="Draw/" />
-		</Unit>
-		<Unit filename="Utilities.cpp" />
-		<Unit filename="Utilities.hpp" />
-		<Unit filename="WorldAnimatedSprite.hpp">
-			<Option virtualFolder="Draw/realdrawables/" />
-		</Unit>
-		<Unit filename="WorldCamera2D.cpp" />
-		<Unit filename="WorldCamera2D.hpp" />
-		<Unit filename="WorldSprite.hpp">
-			<Option virtualFolder="Draw/realdrawables/" />
-		</Unit>
-		<Unit filename="WorldString.hpp">
-			<Option virtualFolder="Draw/realdrawables/" />
-		</Unit>
+		<Unit filename="Wall.cpp" />
+		<Unit filename="Wall.hpp" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />
