@@ -9,6 +9,8 @@
 #include "../../SFMLEventHandler.hpp"
 #include "../../PFWConstants.hpp"
 
+#include <SFML/Graphics/Color.hpp>
+
 class GUIButton : public ScreenSpaceDrawable, public Sprite, public DrawableString, public SFMLEventHandler {
 protected:
 	bool active;
@@ -61,6 +63,7 @@ public:
 		sfSprite->SetColor(color);
 		sfString->SetColor(color);
 	}
+	virtual sf::Color GetColor () { return sfSprite->GetColor(); }
 
 	virtual void SetRotation (float rotation) {
 		sfSprite->SetRotation(rotation);
@@ -72,7 +75,6 @@ public:
 		sfString->Rotate(angle);
 	}
 
-	//**********************************************************************************************************************************************************************************ó
 	virtual sf::Vector2f GetScreenSize () {
 		sf::Vector2f imgSize(sfSprite->GetImage()->GetWidth(), sfSprite->GetImage()->GetHeight());
 		return sf::Vector2f(imgSize.x * sfSprite->GetScale().x, imgSize.y * sfSprite->GetScale().y);

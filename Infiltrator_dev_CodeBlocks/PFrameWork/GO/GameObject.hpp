@@ -21,7 +21,7 @@ protected:
 	sf::Vector2f baseScale;
 	sf::Vector2f basePos;
 
-	// pretty pointless this function is - still..don't delete
+	// pretty pointless this function is - still..don't delete!
 	sf::Vector2f CalcFakeScale () { return baseScale * windowFakeScale; }
 
 	virtual sf::Vector2f CalcFakePos () = 0;

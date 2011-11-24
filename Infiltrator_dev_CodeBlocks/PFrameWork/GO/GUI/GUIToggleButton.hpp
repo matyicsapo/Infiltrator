@@ -39,6 +39,8 @@ public:
 
 	bool GetActive () { return active; }
 
+	virtual sf::Color GetColor () { return sfSprite->GetColor(); }
+
 	virtual void HandleSFEvents(std::list<sf::Event>& sfEvents);
 };
 

@@ -21,6 +21,7 @@ public:
     virtual void Draw (sf::RenderWindow& rwin) { rwin.Draw(*sfSprite); }
 
     virtual void SetColor (sf::Color color) { sfSprite->SetColor(color); }
+    virtual sf::Color GetColor () { return sfSprite->GetColor(); }
 
 	virtual void SetImage (std::string textureFile);
 

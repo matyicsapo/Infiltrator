@@ -51,7 +51,8 @@ player_collisiontest->SetPosition(sf::Vector2f(300, -100));
 	mWorldSprite1->SetPosition(sf::Vector2f(600, 100));
 	mWorldSprite1->SetRotation(37);
 
-	mWorldSprite2 = new WorldSprite("Content/Textures/background_waterfall.jpg", -1);
+mWorldSprite2 = 0;
+//	mWorldSprite2 = new WorldSprite("Content/Textures/background_waterfall.jpg", -1);
 
 	mWorldString1 = new WorldString("Hello World", 36);
 	mWorldString1->SetPosition(sf::Vector2f(300, 200));
@@ -91,15 +92,18 @@ player_collisiontest->SetPosition(sf::Vector2f(300, -100));
 	toggleBtn1->SetScale(sf::Vector2f(3, 3));
 	toggleBtn1->SetPosition(sf::Vector2f(50, 150));
 
-	textField1 = new GUITextfield("Content/Textures/toggle_inactive_normal.png",
-								"Content/Textures/toggle_active_normal.png",
+	textField1 = new GUITextfield("",
+								"",
+								sf::Color(192, 192, 192),
+								sf::Color::White,
 								"starttext",
 								PFWConstants::defaultFontFile,
-								24,
-								ScreenSpaceDrawable::LEFT, ScreenSpaceDrawable::BOTTOM,
+								72,
+								512,
+								ScreenSpaceDrawable::RIGHT, ScreenSpaceDrawable::BOTTOM,
 								-100);
 	textField1->SetScale(sf::Vector2f(2, 2));
-	textField1->SetPosition(sf::Vector2f(50, -50));
+	textField1->SetPosition(sf::Vector2f(-200, 0));
 
 	Drawables->SortByLayerDepthAscendingScreenSpace();
 
@@ -152,9 +156,9 @@ void GameState_Logos::HandleSFEvents(std::list<sf::Event>& sfEvents) {
 					case sf::Key::Escape:
 						Game->GetRenderWindow()->Close();
 					break;
-					case sf::Key::F:
-						Game->ToggleFullScreen();
-					break;
+//					case sf::Key::F:
+//						Game->ToggleFullScreen();
+//					break;
 					case sf::Key::C: {
 
 						if (Game->IsFullScreen()) {
@@ -230,6 +234,7 @@ void GameState_Logos::Update (float dT) {
 		zoomFactor -= zoomSpd * dT;
 	}
 	Game->GetWorldCamera2D()->Zoom(zoomFactor);
+
 	mScreenString1->Rotate(12);
 
 	float camSpd = 350;
@@ -252,6 +257,8 @@ void GameState_Logos::Update (float dT) {
 	player->Update(dT);
 
 	fireClip->Update(dT);
+
+	textField1->Update(dT);
 }
 
 void GameState_Logos::Exit () {

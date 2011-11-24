@@ -3,12 +3,17 @@
 #include "../ResourceManager.hpp"
 
 Sprite::Sprite (std::string textureFile, int layerDepth) : DrawableBase(layerDepth) {
-	sf::Image* imgPtr = Resources->GetImage(textureFile);
-	if (imgPtr != 0) {
-		sfSprite = new sf::Sprite(*imgPtr);
+	if (textureFile != "") {
+		sf::Image* imgPtr = Resources->GetImage(textureFile);
 
-		sfSprite->SetCenter(imgPtr->GetWidth() / 2, imgPtr->GetHeight() / 2);
+		if (imgPtr != 0) {
+			sfSprite = new sf::Sprite(*imgPtr);
+
+			sfSprite->SetCenter(imgPtr->GetWidth() / 2, imgPtr->GetHeight() / 2);
+		}
 	}
+	else
+		sfSprite = 0;
 }
 
 void Sprite::SetImage (std::string textureFile) {

@@ -76,8 +76,8 @@ private:
     std::map<std::string, std::ifstream*> openFiles;
 
     std::ifstream* Begin (std::string fileName);
-    void End (std::string fileName, bool close);
-    void Close (std::string fileName);
+    void End (std::string fileName);
+    //void Close (std::string fileName);
 
 	ConfigParser () {}
 

@@ -20,6 +20,7 @@ public:
     virtual void Draw (sf::RenderWindow& rwin) { rwin.Draw(*sfShape); }
 
     virtual void SetColor (sf::Color color) { sfShape->SetColor(color); }
+    virtual sf::Color GetColor () { return sfShape->GetColor(); }
 
 	virtual void SetRotation (float rotation) { sfShape->SetRotation(rotation); }
 	virtual float GetRotation () { return sfShape->GetRotation(); }

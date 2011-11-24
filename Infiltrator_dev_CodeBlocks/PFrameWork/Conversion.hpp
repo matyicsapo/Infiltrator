@@ -19,8 +19,7 @@ public:
         return result;
     }
 
-	// HACK
-	// couldn't get unsigned values working with template specifications
+	// HACK - couldn't get unsigned values working with template specifications
     unsigned char ToUnsignedChar (std::string s) {
     	unsigned char result;
     	result = static_cast<unsigned char>(boost::lexical_cast<unsigned short>(s));

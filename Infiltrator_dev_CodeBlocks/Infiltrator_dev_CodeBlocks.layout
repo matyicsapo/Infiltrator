@@ -2,76 +2,112 @@
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
 	<File name="Character.cpp" open="0" top="0" tabpos="6">
-		<Cursor position="3807" topLine="123" />
+		<Cursor position="785" topLine="6" />
 	</File>
 	<File name="Character.hpp" open="0" top="0" tabpos="5">
 		<Cursor position="539" topLine="7" />
 	</File>
-	<File name="GameState_Logos.cpp" open="0" top="0" tabpos="4">
-		<Cursor position="1346" topLine="35" />
+	<File name="GameState_Logos.cpp" open="0" top="0" tabpos="3">
+		<Cursor position="3440" topLine="57" />
 	</File>
 	<File name="GameState_Logos.hpp" open="0" top="0" tabpos="3">
-		<Cursor position="699" topLine="25" />
+		<Cursor position="405" topLine="13" />
 	</File>
-	<File name="PFrameWork/ColliderManager.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="371" topLine="0" />
+	<File name="PFrameWork/ColliderManager.cpp" open="0" top="0" tabpos="1">
+		<Cursor position="5401" topLine="144" />
 	</File>
 	<File name="PFrameWork/ColliderManager.hpp" open="0" top="0" tabpos="1">
-		<Cursor position="0" topLine="0" />
+		<Cursor position="531" topLine="0" />
+	</File>
+	<File name="PFrameWork/ConfigParser.cpp" open="0" top="0" tabpos="2">
+		<Cursor position="685" topLine="20" />
+	</File>
+	<File name="PFrameWork/ConfigParser.hpp" open="0" top="0" tabpos="1">
+		<Cursor position="1538" topLine="53" />
+	</File>
+	<File name="PFrameWork/Conversion.hpp" open="0" top="0" tabpos="0">
+		<Cursor position="197" topLine="0" />
 	</File>
 	<File name="PFrameWork/DrawManager.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="100" topLine="0" />
+		<Cursor position="1182" topLine="9" />
 	</File>
 	<File name="PFrameWork/GO/AnimatedSprite.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="44" topLine="0" />
+		<Cursor position="450" topLine="0" />
+	</File>
+	<File name="PFrameWork/GO/AnimatedSprite.hpp" open="0" top="0" tabpos="0">
+		<Cursor position="765" topLine="0" />
 	</File>
 	<File name="PFrameWork/GO/Colliders.hpp" open="0" top="0" tabpos="0">
-		<Cursor position="986" topLine="8" />
+		<Cursor position="685" topLine="2" />
 	</File>
-	<File name="PFrameWork/GO/DrawableString.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="44" topLine="0" />
+	<File name="PFrameWork/GO/DrawableBase.hpp" open="0" top="0" tabpos="0">
+		<Cursor position="355" topLine="0" />
+	</File>
+	<File name="PFrameWork/GO/DrawableString.cpp" open="0" top="0" tabpos="5">
+		<Cursor position="424" topLine="0" />
+	</File>
+	<File name="PFrameWork/GO/DrawableString.hpp" open="0" top="0" tabpos="7">
+		<Cursor position="559" topLine="0" />
+	</File>
+	<File name="PFrameWork/GO/GUI/GUIButton.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="861" topLine="0" />
 	</File>
 	<File name="PFrameWork/GO/GUI/GUIButton.hpp" open="0" top="0" tabpos="0">
-		<Cursor position="227" topLine="0" />
+		<Cursor position="1762" topLine="50" />
 	</File>
-	<File name="PFrameWork/GO/GUI/GUITextfield.hpp" open="0" top="0" tabpos="0">
-		<Cursor position="233" topLine="0" />
+	<File name="PFrameWork/GO/GUI/GUITextfield.cpp" open="0" top="0" tabpos="2">
+		<Cursor position="8961" topLine="299" />
 	</File>
-	<File name="PFrameWork/GO/GameObject.hpp" open="0" top="0" tabpos="0">
-		<Cursor position="1118" topLine="24" />
+	<File name="PFrameWork/GO/GUI/GUITextfield.hpp" open="0" top="0" tabpos="1">
+		<Cursor position="1151" topLine="48" />
 	</File>
-	<File name="PFrameWork/GO/ScreenSpaceDrawable.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="49" topLine="0" />
+	<File name="PFrameWork/GO/GUI/GUIToggleButton.hpp" open="0" top="0" tabpos="0">
+		<Cursor position="1023" topLine="11" />
+	</File>
+	<File name="PFrameWork/GO/GameObject.hpp" open="0" top="0" tabpos="7">
+		<Cursor position="477" topLine="6" />
+	</File>
+	<File name="PFrameWork/GO/ScreenSpaceDrawable.cpp" open="0" top="0" tabpos="6">
+		<Cursor position="270" topLine="0" />
 	</File>
 	<File name="PFrameWork/GO/ScreenSpaceDrawable.hpp" open="0" top="0" tabpos="0">
 		<Cursor position="107" topLine="0" />
 	</File>
+	<File name="PFrameWork/GO/ScreenString.hpp" open="0" top="0" tabpos="0">
+		<Cursor position="880" topLine="0" />
+	</File>
 	<File name="PFrameWork/GO/Shape.hpp" open="0" top="0" tabpos="0">
-		<Cursor position="551" topLine="0" />
+		<Cursor position="754" topLine="0" />
 	</File>
 	<File name="PFrameWork/GO/Sprite.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="332" topLine="0" />
+		<Cursor position="141" topLine="0" />
 	</File>
 	<File name="PFrameWork/GO/Sprite.hpp" open="0" top="0" tabpos="0">
-		<Cursor position="1016" topLine="0" />
+		<Cursor position="822" topLine="4" />
 	</File>
 	<File name="PFrameWork/GO/TimeAnimatedSprite.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="89" topLine="0" />
 	</File>
+	<File name="PFrameWork/GO/TimeAnimatedSprite.hpp" open="0" top="0" tabpos="0">
+		<Cursor position="607" topLine="0" />
+	</File>
 	<File name="PFrameWork/GO/WorldDrawable.hpp" open="0" top="0" tabpos="0">
 		<Cursor position="64" topLine="0" />
 	</File>
-	<File name="PFrameWork/GameObjectManager.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="47" topLine="0" />
+	<File name="PFrameWork/GameObjectManager.cpp" open="0" top="0" tabpos="8">
+		<Cursor position="171" topLine="0" />
 	</File>
-	<File name="PFrameWork/PFWConstants.hpp" open="1" top="0" tabpos="2">
-		<Cursor position="158" topLine="0" />
+	<File name="PFrameWork/GameObjectManager.hpp" open="0" top="0" tabpos="0">
+		<Cursor position="419" topLine="0" />
 	</File>
-	<File name="PFrameWork/SFMLGameManager.cpp" open="1" top="0" tabpos="3">
-		<Cursor position="2415" topLine="62" />
+	<File name="PFrameWork/PFWConstants.hpp" open="0" top="0" tabpos="4">
+		<Cursor position="24" topLine="0" />
+	</File>
+	<File name="PFrameWork/SFMLGameManager.cpp" open="0" top="0" tabpos="3">
+		<Cursor position="2703" topLine="51" />
 	</File>
 	<File name="PFrameWork/SFMLGameManager.hpp" open="0" top="0" tabpos="0">
-		<Cursor position="120" topLine="0" />
+		<Cursor position="774" topLine="0" />
 	</File>
 	<File name="PFrameWork/State/GameState.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="39" topLine="0" />
@@ -88,10 +124,10 @@
 	<File name="PFrameWork/Utilities.hpp" open="0" top="0" tabpos="2">
 		<Cursor position="201" topLine="0" />
 	</File>
-	<File name="Player.cpp" open="1" top="1" tabpos="5">
-		<Cursor position="732" topLine="2" />
+	<File name="Player.cpp" open="0" top="0" tabpos="1">
+		<Cursor position="731" topLine="6" />
 	</File>
-	<File name="Player.hpp" open="1" top="0" tabpos="4">
+	<File name="Player.hpp" open="0" top="0" tabpos="4">
 		<Cursor position="86" topLine="0" />
 	</File>
 	<File name="Wall.cpp" open="0" top="0" tabpos="0">

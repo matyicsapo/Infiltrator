@@ -22,10 +22,11 @@ public:
 	virtual void Draw (sf::RenderWindow& rwin) { rwin.Draw(*sfString); }
 
 	virtual void SetColor (sf::Color color) { sfString->SetColor(color); }
+	virtual sf::Color GetColor () { return sfString->GetColor(); }
 
 	void SetStyle (unsigned long textStyle) { sfString->SetStyle(textStyle); }
 
-	void SetText (std::string text);
+	virtual void SetText (std::string text);
 	std::string GetText () { return sfString->GetText(); }
 
 	virtual void SetRotation (float rotation) { sfString->SetRotation(rotation); }

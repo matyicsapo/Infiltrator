@@ -20,11 +20,11 @@ Player::~Player () {
 void Player::Update (float dT) {
 	const sf::Input& sfInput = Game->GetRenderWindow()->GetInput();
 
-	std::cout << sf::Key::Left << std::endl;
+	//std::cout << sf::Key::Left << std::endl;
 
 /**/
 	// keyboard
-	int l = -sfInput.IsKeyDown(sf::Key::Code(291));
+	int l = -sfInput.IsKeyDown(sf::Key::A);//sf::Key::Code(291));
 	int r = sfInput.IsKeyDown(sf::Key::D);
 	int x = l + r;
 	int u = -sfInput.IsKeyDown(sf::Key::W);

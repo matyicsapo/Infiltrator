@@ -2,12 +2,16 @@
 #define GAMEOBJECTMANAGER_HPP
 
 #include <list>
+#include <vector>
 
 class GameObject;
 
 class GameObjectManager {
 private:
 	std::list<GameObject*> allGameObjects;
+	std::vector<GameObject*> newGameObjects;
+
+	float windowFakeScale;
 
     GameObjectManager () {}
 
@@ -19,10 +23,10 @@ private:
 public:
 	static GameObjectManager* Instance ();
 
-	void Add (GameObject* go) { allGameObjects.push_back(go); };
+	void Add (GameObject* go);
 	void Pop (GameObject* go) { allGameObjects.remove(go); }
 
-	void ResetAll (float windowFakeScale);
+	void Update (float windowFakeScale);
 };
 
 #define GameObjects GameObjectManager::Instance()

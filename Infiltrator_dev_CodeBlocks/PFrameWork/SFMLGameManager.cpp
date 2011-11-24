@@ -4,6 +4,8 @@
 #include "PFWConstants.hpp"
 #include "GameObjectManager.hpp"
 
+#include "ResourceManager.hpp"
+
 SFMLGameManager::SFMLGameManager () : mGameStateMachine(0),
 										mWorldCamera2D(sf::FloatRect(0, 0, 800, 600), .5, 2),
 										bClear(true),
@@ -91,7 +93,7 @@ int SFMLGameManager::Run () {
 		// simple non-processed(non-fixed & no-nothing-ed) deltaTime
         if (mGameStateMachine) mGameStateMachine->Update(win.GetFrameTime());
 
-        if (windowFakeScale != 0) GameObjects->ResetAll(windowFakeScale);
+        GameObjects->Update(windowFakeScale);
 
         Drawables->DrawWorldSpace(win);
 

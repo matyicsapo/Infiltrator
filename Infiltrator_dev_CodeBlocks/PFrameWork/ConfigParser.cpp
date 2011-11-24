@@ -29,11 +29,24 @@ std::ifstream* ConfigParser::Begin (std::string fileName) {
             // ERROR - couldn't open file
             return 0;
         }
+
+		// CHANGE 2011.11.17.
+        openFiles.insert(std::pair<std::string, std::ifstream*>(fileName, cfgFile));
     }
 
     return cfgFile;
 }
 
+void ConfigParser::End (std::string fileName) {
+	std::map<std::string, std::ifstream*>::iterator it = openFiles.find(fileName);
+    if (it != openFiles.end()) {
+        it->second->close();
+        openFiles.erase(it);
+    }
+}
+
+// CHANGE 2011.11.17.
+/*
 void ConfigParser::End (std::string fileName, bool close) {
     if (close) {
         Close(fileName);
@@ -52,7 +65,7 @@ void ConfigParser::Close (std::string fileName) {
         it->second->close();
         openFiles.erase(it);
     }
-}
+}*/
 
 bool ConfigParser::GetContents (std::string fileName, CfgContents& contents) {
     std::ifstream* cfgFile = Begin(fileName);
@@ -116,7 +129,7 @@ bool ConfigParser::GetContents (std::string fileName, CfgContents& contents) {
         }
     }
 
-    End(fileName, true);
+    End(fileName);
 
     return true;
 }

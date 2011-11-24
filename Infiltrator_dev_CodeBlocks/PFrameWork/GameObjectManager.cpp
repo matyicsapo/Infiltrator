@@ -14,8 +14,31 @@ GameObjectManager::~GameObjectManager () {
 	}
 }
 
-void GameObjectManager::ResetAll (float windowFakeScale) {
-	for (std::list<GameObject*>::iterator itGO = allGameObjects.begin(); itGO != allGameObjects.end(); itGO++) {
-		(*itGO)->Reset(windowFakeScale);
+void GameObjectManager::Add (GameObject* go) {
+	allGameObjects.push_back(go);
+	newGameObjects.push_back(go);
+
+//	// pure virtual method called
+//	// terminate called without an exception
+//	// Aborted
+//	go->Reset(this->windowFakeScale);
+}
+
+void GameObjectManager::Update (float windowFakeScale) {
+	if (windowFakeScale != 0) {
+		this->windowFakeScale = windowFakeScale;
+
+		for (std::list<GameObject*>::iterator itGO = allGameObjects.begin(); itGO != allGameObjects.end(); itGO++) {
+			(*itGO)->Reset(windowFakeScale);
+		}
+
+		newGameObjects.clear();
+	}
+	else if (!newGameObjects.empty()) {
+		for (std::vector<GameObject*>::iterator itGO = newGameObjects.begin(); itGO != newGameObjects.end(); itGO++) {
+			(*itGO)->Reset(this->windowFakeScale);
+		}
+
+		newGameObjects.clear();
 	}
 }

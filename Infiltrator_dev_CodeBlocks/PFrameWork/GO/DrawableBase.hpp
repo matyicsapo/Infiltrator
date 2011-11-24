@@ -14,6 +14,7 @@ public:
 	virtual void Draw (sf::RenderWindow& rwin) = 0;
 
 	virtual void SetColor (sf::Color color) = 0;
+	virtual sf::Color GetColor () = 0;
 };
 
 #endif // DRAWABLEBASE_HPP
