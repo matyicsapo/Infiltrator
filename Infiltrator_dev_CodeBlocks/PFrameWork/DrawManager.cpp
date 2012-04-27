@@ -5,21 +5,27 @@
 #include "GO/WorldDrawable.hpp"
 #include "GO/ScreenSpaceDrawable.hpp"
 
-DrawManager* DrawManager::Instance () {
-	static DrawManager instance;
-
-	return &instance;
-}
-
 DrawManager::~DrawManager () {
-	for (std::list<WorldDrawable*>::iterator itDrawable = mWorldSpaceDrawables.begin(); itDrawable != mWorldSpaceDrawables.end(); itDrawable++) {
-		delete (*itDrawable);
-	}
+	/* THIS SHOULD BE WRITTEN FOR IT IS NOT A SINGLETON ANYMORE, BUT THEN DERIVING SHOULD COMPLY
+		IF NOT NULLing SOME DELETED THEN IT MAY BE ATTEMPTED TO DELETE IT TWICE => ERRRRRRRROR
+	*/
 
-	for (std::list<ScreenSpaceDrawable*>::iterator itScreenSpaceDrawable = mScreenSpaceDrawables.begin();
-			itScreenSpaceDrawable != mScreenSpaceDrawables.end(); itScreenSpaceDrawable++) {
-		delete (*itScreenSpaceDrawable);
-	}
+
+
+
+
+//	for (std::list<WorldDrawable*>::iterator itDrawable = mWorldSpaceDrawables.begin();
+//			itDrawable != mWorldSpaceDrawables.end(); itDrawable++) {
+//		// have to subtract 'cause Drawables Pop THEMSELVES from the list
+//		// this way the gamestate code only has to call delete on them
+//		// but here, on program shutdown it would mess up the iterator references otherwise
+//		delete *itDrawable--;
+//	}
+//
+//	for (std::list<ScreenSpaceDrawable*>::iterator itScreenSpaceDrawable = mScreenSpaceDrawables.begin();
+//			itScreenSpaceDrawable != mScreenSpaceDrawables.end(); itScreenSpaceDrawable++) {
+//		delete *itScreenSpaceDrawable--;
+//	}
 }
 
 void DrawManager::DrawWorldSpace (sf::RenderWindow& rwin) {
@@ -36,11 +42,11 @@ void DrawManager::DrawScreenSpace (sf::RenderWindow& rwin) {
 	}
 }
 
-void DrawManager::SortByLayerDepthAscendingWorldSpace () {
+void DrawManager::SortAscendingWorld () {
 	mWorldSpaceDrawables.sort( boost::bind(&DrawManager::Comp_layerDepth, this, _1, _2) );
 }
 
-void DrawManager::SortByLayerDepthAscendingScreenSpace () {
+void DrawManager::SortAscendingScreen () {
 	mScreenSpaceDrawables.sort( boost::bind(&DrawManager::Comp_layerDepth, this, _1, _2) );
 }
 

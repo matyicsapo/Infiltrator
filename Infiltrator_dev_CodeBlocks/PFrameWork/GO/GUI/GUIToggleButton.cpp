@@ -25,28 +25,35 @@ void GUIToggleButton::HandleSFEvents (std::list<sf::Event>& sfEvents) {
 			} break;
 			case sf::Event::MouseButtonPressed:
 				if (hover) {
-					active = !active;
-
-					if (active) {
-						SetImage(txActiveHover);
-						if (onActivate)
-							onActivate();
-					}
-					else {
-						SetImage(txInactiveHover);
-						if (onDeactivate)
-							onDeactivate();
-					}
+					SetActive(!active, true, hover);
 
 					itSfEvent =	--sfEvents.erase(itSfEvent);
 				}
 			break;
 			default:
-				// don't care about no other event types
 			break;
 		}
 
 		itSfEvent++;
+	}
+}
+
+void GUIToggleButton::SetActive (bool activated, bool callevent, bool hovertx) {
+	active = activated;
+
+	if (activated) {
+		if (onActivate && callevent) {
+			onActivate();
+		}
+
+		SetImage(hovertx ? txActiveHover : txActiveNormal);
+	}
+	else {
+		if (onDeactivate && callevent) {
+			onDeactivate();
+		}
+
+		SetImage(hovertx ? txInactiveHover : txInactiveHover);
 	}
 }
 

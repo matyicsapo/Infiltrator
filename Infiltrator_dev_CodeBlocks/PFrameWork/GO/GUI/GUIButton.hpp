@@ -22,13 +22,17 @@ protected:
 
 	boost::function<void (void)> onActivate;
 
+	sf::Vector2f textOffset;
+
 	virtual void SetFakeScale (sf::Vector2f fakeScale) {
 		sfSprite->SetScale(fakeScale);
 		sfString->SetScale(fakeScale);
 	}
 	virtual void SetFakePos (sf::Vector2f fakePos) {
 		sfSprite->SetPosition(fakePos);
-		sfString->SetPosition(fakePos);
+		sfString->SetPosition(fakePos
+			+ sf::Vector2f(textOffset.x * baseScale.x,
+							textOffset.y * baseScale.y) * windowFakeScale);
 	}
 
 public:
@@ -38,7 +42,8 @@ public:
 				boost::function<void (void)> onActivate,
 				std::string text = "",
 				std::string fontFile = PFWConstants::defaultFontFile,
-				float fontSize = PFWConstants::fontSize,
+				float fontSize = PFWConstants::defaultFontSize,
+				sf::Vector2f textOffset = sf::Vector2f(0, 0),
 				AlignH alignH = LEFT,
 				AlignV alignV = TOP,
 				int layerDepth = 0)
@@ -51,8 +56,14 @@ public:
 			txInactiveNormal(txInactiveNormal),
 			txInactiveHover(txInactiveHover),
 			txActiveHover(txActiveHover),
-			onActivate(onActivate)
-		{}
+			onActivate(onActivate),
+			textOffset(textOffset)
+			{
+		sfString->SetPosition(textOffset);
+		sfString->SetColor(sf::Color(128, 128, 128));
+	}
+
+	virtual void ReleaseResources ();
 
 	virtual void Draw (sf::RenderWindow& rwin) {
 		rwin.Draw(*sfSprite);
@@ -81,6 +92,13 @@ public:
 	}
 
 	virtual void HandleSFEvents(std::list<sf::Event>& sfEvents);
+
+	virtual bool Contains (sf::Vector2f globalPosition) {
+		return false;
+	}
+	virtual bool IsOpaque (sf::Vector2f globalPosition) {
+		return false;
+	}
 };
 
 #endif // GUIBUTTON_HPP

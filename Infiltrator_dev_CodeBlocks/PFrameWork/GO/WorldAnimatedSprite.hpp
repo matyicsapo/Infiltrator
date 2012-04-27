@@ -17,7 +17,8 @@ public:
 		WorldDrawable(layerDepth) {}
 
     WorldAnimatedSprite (WorldAnimatedSprite const& xWorldAnimatedSprite)
-		: DrawableBase(xWorldAnimatedSprite),
+		: GameObject(xWorldAnimatedSprite),
+		DrawableBase(xWorldAnimatedSprite),
 		AnimatedSprite(xWorldAnimatedSprite),
 		WorldDrawable(xWorldAnimatedSprite) {}
 };

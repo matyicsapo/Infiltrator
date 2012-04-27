@@ -16,7 +16,7 @@ public:
 		: DrawableBase(layerDepth), DrawableString(layerDepth), WorldDrawable(layerDepth) {}
 
     WorldString (WorldString const& xWorldString)
-		: DrawableBase(xWorldString), DrawableString(xWorldString), WorldDrawable(xWorldString) {}
+		: GameObject(xWorldString), DrawableBase(xWorldString), DrawableString(xWorldString), WorldDrawable(xWorldString) {}
 };
 
 #endif // WORLDSTRING_HPP

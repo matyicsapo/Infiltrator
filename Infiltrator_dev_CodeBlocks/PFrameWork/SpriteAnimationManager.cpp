@@ -2,10 +2,18 @@
 
 #include "ConfigParser.hpp"
 
-SpriteAnimationManager* SpriteAnimationManager::Instance () {
-	static SpriteAnimationManager instance;
+SpriteAnimationManager* SpriteAnimationManager::instance = 0;
 
-	return &instance;
+SpriteAnimationManager* SpriteAnimationManager::Instance () {
+	if (instance == 0)
+		instance = new SpriteAnimationManager();
+
+	return instance;
+}
+
+void SpriteAnimationManager::Release () {
+	delete instance;
+	instance = 0;
 }
 
 SpriteAnimationManager::~SpriteAnimationManager () {
@@ -21,7 +29,6 @@ void SpriteAnimationManager::LoadAnimations (std::string cfgFile) {
 
 	for (CfgSectionMap::iterator itSection = contents.GetIteratorBegin();
 			itSection != contents.GetIteratorEnd(); itSection++) {
-
 		SpriteAnimation* anim = new SpriteAnimation();
 		anim->fileName = contents[(*itSection)->first]["file"];
 		anim->FPS = Convert->ToNum<int>(contents[(*itSection)->first]["FPS"]);

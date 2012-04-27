@@ -7,8 +7,6 @@
 class DrawableBase;
 class WorldDrawable;
 class ScreenSpaceDrawable;
-//#include "WorldDrawable.hpp"
-//#include "ScreenSpaceDrawable.hpp"
 
 class DrawManager {
 private:
@@ -17,18 +15,15 @@ private:
 
 	inline bool Comp_layerDepth (DrawableBase* d1, DrawableBase* d2);
 
-    DrawManager () {}
-
-	~DrawManager ();
-
-	DrawManager (DrawManager const&);
-	DrawManager& operator= (DrawManager const&);
-
 public:
-	static DrawManager* Instance ();
+	DrawManager () {}
 
-	void DrawWorldSpace (sf::RenderWindow& rwin);
-	void DrawScreenSpace (sf::RenderWindow& rwin);
+	virtual ~DrawManager ();
+
+	std::list<WorldDrawable*> GetWorldDrawables () { return mWorldSpaceDrawables; }
+
+	virtual void DrawWorldSpace (sf::RenderWindow& rwin);
+	virtual void DrawScreenSpace (sf::RenderWindow& rwin);
 
 	void AddWorldSpace (WorldDrawable* xWorldDrawable) { mWorldSpaceDrawables.push_back(xWorldDrawable); };
 	void PopWorldSpace (WorldDrawable* xWorldDrawable) { mWorldSpaceDrawables.remove(xWorldDrawable); }
@@ -41,9 +36,8 @@ public:
 	void ClearWorldSpace () { mWorldSpaceDrawables.clear(); }
 	void ClearScreenSpace () { mScreenSpaceDrawables.clear(); }
 
-	// call manually to avoid multiple, redundant calls when adding more elements one after an other
-	void SortByLayerDepthAscendingWorldSpace ();
-	void SortByLayerDepthAscendingScreenSpace ();
+	void SortAscendingWorld ();
+	void SortAscendingScreen ();
 };
 
 #define Drawables DrawManager::Instance()

@@ -1,0 +1,111 @@
+lang=English
+
+logofile=ENG.png
+
+[misc]
+loading=Loading
+caption_profile=Profile
+caption_language=Language
+
+[menu_login]
+create_btn=Create
+start_btn=Start
+
+[menu_main]
+play=Play
+editor=Editor
+credits=Credits
+
+[menu_load]
+main=Main Levels
+user=User Created
+
+[menu]
+back=Back
+exittomain=Exit to MainMenu
+exitgame=Exit Game
+cancel=Cancel
+
+[menu_options]
+caption=Options
+caption_graphics=Graphics
+caption_resolution=Resolution
+caption_fullscr=Fullscreen
+caption_audio=Audio
+caption_vol_master=Master volume
+caption_vol_music=Music volume
+caption_vol_effect=Effect volume
+;revert=Revert
+;apply=Apply
+
+[menu_editorpause]
+edit=Edit
+test=Test
+save=Save
+load=Load
+
+[menu_playpause]
+resume=Resume
+restart=Restart
+
+[editor_menubar]
+colliders=Colliders
+ground=Ground
+characters=Characters
+levelinfo=Level Info
+newmap=New map
+
+[editor_tools]
+rockwall=Rockwall
+rock=Rock
+bush=Bush
+pine=Pine
+roof=Roof
+road=Road
+player=Player
+guard=Guard
+princess=Princess
+waypoint=WayPoint
+gold=Coin
+chest=Chest
+goal=Goal
+
+[editor_levelinfo]
+name=Levelname
+size=Levelsize
+objectives=Objectives
+navmap=NavMap:
+navmap_none=None
+navmap_got=Valid
+navmap_changed=Changed
+gennavmap=Generate
+shownavmap=Show:
+
+[interact]
+chest_collect=to collect
+princess_follow=to follow
+princess_stop=to stop
+
+[HUD]
+currobj=Objective
+
+[credits]
+creator_caption=Created by:
+creator_name=Matyi Csapo
+creator_contact=matyicsapo@gmail.com
+sound_caption=Sounds:
+sound_name=free stuff from the internet
+sound_contact=
+thanks=Made possible by:
+thanks1=SFML(sfml-dev.org) by Laurent Gomilla
+thanks2=Boost C++ libraries (boost.org)
+
+[levelfinish]
+re_success=Again
+re_fail=Retry
+tomm=to Main Menu
+congrats=Congratulations!
+won=You successfully completed the level!
+lost=You got caught!
+gold=Gold picked up:
+allgold=All gold:

@@ -1,0 +1,7 @@
+package Infiltrator;
+
+message Profile {
+	//repeated string completedLevels = 1;
+
+	required uint32 allGold = 2;
+};

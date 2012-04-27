@@ -2,6 +2,7 @@
 #define CONVERSION_HPP
 
 #include <boost/lexical_cast.hpp>
+#include <sstream>
 
 class Conversion {
     Conversion () {}
@@ -24,6 +25,13 @@ public:
     	unsigned char result;
     	result = static_cast<unsigned char>(boost::lexical_cast<unsigned short>(s));
     	return result;
+    }
+
+    template<class T>
+    std::string ToString (T n) {
+    	std::stringstream ss("");
+    	ss << n;
+    	return ss.str();
     }
 };
 

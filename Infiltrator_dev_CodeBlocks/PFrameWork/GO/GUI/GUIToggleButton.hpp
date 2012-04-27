@@ -18,7 +18,8 @@ public:
 					boost::function<void (void)> onDeactivate,
 					std::string text = "",
 					std::string fontFile = PFWConstants::defaultFontFile,
-					float fontSize = PFWConstants::fontSize,
+					float fontSize = PFWConstants::defaultFontSize,
+					sf::Vector2f textOffset = sf::Vector2f(0, 0),
 					AlignH alignH = LEFT,
 					AlignV alignV = TOP,
 					int layerDepth = 0)
@@ -30,6 +31,7 @@ public:
 					text,
 					fontFile,
 					fontSize,
+					textOffset,
 					alignH,
 					alignV,
 					layerDepth),
@@ -37,11 +39,19 @@ public:
 				onDeactivate(onDeactivate)
 			{}
 
+	void SetActive (bool activated, bool callevent = false, bool hovertx = false);
 	bool GetActive () { return active; }
 
 	virtual sf::Color GetColor () { return sfSprite->GetColor(); }
 
 	virtual void HandleSFEvents(std::list<sf::Event>& sfEvents);
+
+	virtual bool Contains (sf::Vector2f globalPosition) {
+		return false;
+	}
+	virtual bool IsOpaque (sf::Vector2f globalPosition) {
+		return false;
+	}
 };
 
 #endif // GUITOGGLEBUTTON_HPP

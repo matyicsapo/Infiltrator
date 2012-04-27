@@ -1,5 +1,10 @@
 #include "GUIButton.hpp"
 
+void GUIButton::ReleaseResources () {
+	Sprite::ReleaseResources();
+	DrawableString::ReleaseResources();
+}
+
 void GUIButton::HandleSFEvents (std::list<sf::Event>& sfEvents) {
 	std::list<sf::Event>::iterator itSfEvent = sfEvents.begin();
 	while (itSfEvent != sfEvents.end()) {
@@ -17,12 +22,14 @@ void GUIButton::HandleSFEvents (std::list<sf::Event>& sfEvents) {
 				if (btnBounds.Contains(itSfEvent->MouseMove.X, itSfEvent->MouseMove.Y)) {
 					if (!hover) {
 						// if got in/on
+						sfString->SetColor(sf::Color::White);
 						hover = true;
 						SetImage(txInactiveHover);
 					}
 				}
 				else if (hover) {
 					// if got out/off
+					sfString->SetColor(sf::Color(128, 128, 128));
 					active = false;
 					hover = false;
 					SetImage(txInactiveNormal);
@@ -48,7 +55,6 @@ void GUIButton::HandleSFEvents (std::list<sf::Event>& sfEvents) {
 				}
 			break;
 			default:
-				// don't care about no other event types
 			break;
 		}
 

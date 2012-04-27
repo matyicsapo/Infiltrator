@@ -2,6 +2,7 @@
 
 #include <cassert>
 #include <fstream>
+//#include <iostream>
 
 ConfigParser::~ConfigParser () {
     for (std::map<std::string, std::ifstream*>::iterator it = openFiles.begin(); it != openFiles.end(); it++) {
@@ -89,10 +90,10 @@ bool ConfigParser::GetContents (std::string fileName, CfgContents& contents) {
                 lastSectionName += line[i];
             }
         }
-        else if (line[0] != ';' || line[0] != '#') {
+        else if (line[0] != ';' && line[0] != '#') {
             // it's not a comment
             // it should be a valid entry..don't use whitespaces!!
-            size_t pos = line.find_first_of("=:");
+            size_t pos = line.find_first_of("=");
             if (pos != std::string::npos) {
                 std::string key = "";
                 for (size_t i = 0; i < pos; i++) {
@@ -102,6 +103,13 @@ bool ConfigParser::GetContents (std::string fileName, CfgContents& contents) {
                 std::string value = "";
                 for (size_t i = pos+1; i < line.length(); i++) {
                     value += line[i];
+                }
+
+				size_t returnPos = value.rfind("\r");
+                if (returnPos != std::string::npos) {
+                	std::string::iterator itFirst = value.begin() + returnPos;
+                	std::string::iterator itLast = itFirst + 1;
+                	value.erase(itFirst, itLast);
                 }
 
                 CfgEntries* entriesForThisSection;
@@ -174,5 +182,15 @@ CfgEntries& CfgContents::operator[] (std::string section) {
 	}
 
 	assert(0);
+}
+
+bool CfgContents::Exists (std::string section) {
+	for (CfgSectionMap::iterator itSections = sections.begin(); itSections != sections.end(); itSections++) {
+		if ( (*itSections)->first == section) {
+			return true;
+		}
+	}
+
+	return false;
 }
 // === CfgContents //

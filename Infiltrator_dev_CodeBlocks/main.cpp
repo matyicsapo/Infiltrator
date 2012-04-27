@@ -1,17 +1,14 @@
+#include "PFrameWork/StateMachine.hpp"
 #include "PFrameWork/SFMLGameManager.hpp"
 
-#include "GameState_Logos.hpp"
-
-//#include "GameState_MainMenu.hpp"
+#include "GameStates/GameState_Logos.hpp"
 
 int main () {
 	GameState* xInitialGameState = new GameState_Logos();
-	//GameState* xInitialGameState = new GameState_MainMenu();
-	GameStateMachine* xGameStateMachine = new GameStateMachine(xInitialGameState);
 
-	Game->SetGameStateMachine(xGameStateMachine);
+	Game->SetGameStateMachine(new StateMachine<GameState>(xInitialGameState));
 
-	xInitialGameState->Enter();
+	xInitialGameState->Init();
 
 	int result = Game->Run();
 

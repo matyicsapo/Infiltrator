@@ -1,0 +1,58 @@
+package Infiltrator;
+
+message Level {
+	enum WorldObjType {
+		ROCKWALL = 1;
+		ROCK01 = 2;
+		ROCK02 = 3;
+		BUSH = 4;
+		PINE = 5;
+		ROOF = 6;
+		
+		ROAD = 7;
+		
+		PLAYER = 8;
+		//GUARD = 9;
+		PRINCESS = 10;
+		
+		//WAYPOINT = 11;
+		COIN = 12;
+		CHEST = 13;
+		GOAL = 14;		
+	}
+	
+	message Vector2D {
+		required float x = 1;
+		required float y = 2;
+	}
+	
+	message WorldObj {
+		required WorldObjType type = 1;
+		required Vector2D pos = 2;
+	}
+	
+	message Guard {
+		required Vector2D pos = 1;
+		repeated Vector2D waypoints = 2;
+	}
+	
+	required string levelName = 1;
+	
+	required Vector2D levelSize = 2;
+	
+	optional WorldObj mission1st = 3;
+	optional WorldObj mission2nd = 4;
+	
+	repeated Guard guards = 5;
+
+	repeated WorldObj stuff = 6;
+
+	optional bool userCreated = 7;
+	
+	message NavMapNode {
+		required Vector2D position = 1;
+		repeated Vector2D adjacentPositions = 2;
+	}
+	
+	repeated NavMapNode navMapNodes = 8;
+};

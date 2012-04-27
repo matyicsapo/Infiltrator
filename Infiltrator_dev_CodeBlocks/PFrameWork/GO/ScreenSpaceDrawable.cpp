@@ -31,3 +31,8 @@ sf::Vector2f ScreenSpaceDrawable::CalcFakePos () {
 
 	return fakePos;
 }
+
+void ScreenSpaceDrawable::SetAlign (AlignH alignH, AlignV alignV) {
+	mAlignH = alignH;
+	mAlignV = alignV;
+}

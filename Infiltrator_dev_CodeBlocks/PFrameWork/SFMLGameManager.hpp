@@ -4,12 +4,17 @@
 #include <SFML/Graphics.hpp>
 #include <list>
 
-#include "State/GameStateMachine.hpp"
 #include "WorldCamera2D.hpp"
+
+class GameState;
+template<class T> class StateMachine;
 
 class SFMLGameManager {
 private:
-	GameStateMachine* mGameStateMachine;
+	float deltaTime;
+	float windowFakeScale;
+
+	StateMachine<GameState>* mGameStateMachine;
 
 	sf::RenderWindow win;
 
@@ -24,12 +29,16 @@ private:
 	bool bClear;
 	sf::Color clearColor;
 
+	int sfVideoModesCount;
+
 	SFMLGameManager ();
 
-	~SFMLGameManager () { delete mGameStateMachine; }
+	~SFMLGameManager ();
 
 	SFMLGameManager (SFMLGameManager const&);
 	SFMLGameManager& operator= (SFMLGameManager const&);
+
+	void OnResize ();
 
 public:
 	static SFMLGameManager* Instance ();
@@ -39,9 +48,9 @@ public:
 
 	int Run ();
 
-	void SetGameStateMachine (GameStateMachine* newGameStateMachine) { mGameStateMachine = newGameStateMachine; }
+	void SetGameStateMachine (StateMachine<GameState>* newGameStateMachine);
 
-	GameStateMachine* GetGameStateMachine () { return mGameStateMachine; }
+	StateMachine<GameState>* GetGameStateMachine ();
 
 	void SetFullScreen (bool enable) { Create(win.GetWidth(), win.GetHeight(), enable); }
 	void ToggleFullScreen () { Create(win.GetWidth(), win.GetHeight(), !fullScreen); }
@@ -55,7 +64,12 @@ public:
 
 	WorldCamera2D* GetWorldCamera2D () { return &mWorldCamera2D; }
 
-	sf::Vector2f ConvertCoordsWindowToWorld (sf::Vector2f windowspaceCoords);
+	sf::Vector2f ConvertCoordsWindowToWorld (sf::Vector2f windowSpaceCoords);
+	sf::Vector2f ConvertCoordsWindowToWorld (float windowSpaceX, float windowSpaceY);
+
+	float GetDeltaTime () { return deltaTime; }
+	float GetWindowFakeScale () { return windowFakeScale; }
+	int GetSFVideoModesCount () { return sfVideoModesCount; }
 };
 
 #define Game SFMLGameManager::Instance()

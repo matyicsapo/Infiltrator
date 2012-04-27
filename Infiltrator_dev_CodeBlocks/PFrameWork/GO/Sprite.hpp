@@ -11,12 +11,13 @@ protected:
 	virtual void SetFakePos (sf::Vector2f fakePos) { sfSprite->SetPosition(fakePos); }
 
 public:
-	Sprite (int layerDepth) : DrawableBase(layerDepth), sfSprite(0) {}
-	Sprite (std::string textureFile, int layerDepth);
-    Sprite (Sprite const& sprite) : DrawableBase(sprite)
-		{ sfSprite = new sf::Sprite( *(sprite.sfSprite) ); }
+	Sprite (int layerDepth, unsigned int entityType = 0) : DrawableBase(layerDepth), sfSprite(0) {}
+	Sprite (std::string textureFile, int layerDepth, unsigned int entityType = 0);
+    Sprite (Sprite const& xSprite);
 
-    virtual ~Sprite () { delete sfSprite; }
+    virtual ~Sprite ();
+
+    virtual void ReleaseResources ();
 
     virtual void Draw (sf::RenderWindow& rwin) { rwin.Draw(*sfSprite); }
 
@@ -29,10 +30,10 @@ public:
 	virtual float GetRotation () { return sfSprite->GetRotation(); }
 	virtual void Rotate (float angle) { sfSprite->Rotate(angle); }
 
-	virtual sf::Vector2f GetScreenSize () {
-		sf::Vector2f imgSize(sfSprite->GetImage()->GetWidth(), sfSprite->GetImage()->GetHeight());
-		return sf::Vector2f(imgSize.x * sfSprite->GetScale().x, imgSize.y * sfSprite->GetScale().y);
-	}
+	virtual sf::Vector2f GetScreenSize ();
+
+	virtual bool Contains (sf::Vector2f globalPosition);
+	virtual bool IsOpaque (sf::Vector2f globalPosition);
 };
 
 #endif // SPRITE_HPP

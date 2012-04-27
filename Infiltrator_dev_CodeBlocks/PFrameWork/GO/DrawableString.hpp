@@ -7,17 +7,25 @@ class DrawableString : virtual public DrawableBase {
 protected:
 	sf::String* sfString;
 
-	virtual void SetFakeScale (sf::Vector2f fakeScale) { sfString->SetScale(fakeScale); }
+	float height;
+
+	virtual void SetFakeScale (sf::Vector2f fakeScale) {
+		sfString->SetScale(fakeScale);
+		CalcHeight();
+	}
 	virtual void SetFakePos (sf::Vector2f fakePos) { sfString->SetPosition(fakePos); }
+
+	void CalcHeight ();
 
 public:
 	DrawableString (int layerDepth) : DrawableBase(layerDepth) { sfString = new sf::String(); }
 	DrawableString (std::string text, std::string fontFile, float size, int layerDepth);
 	DrawableString (std::string text, float size, int layerDepth);
-    DrawableString (DrawableString const& xDrawableString) : DrawableBase(xDrawableString)
-		{ sfString = new sf::String( *(xDrawableString.sfString) ); }
+    DrawableString (DrawableString const& xDrawableString);
 
-	virtual ~DrawableString () { delete sfString; }
+	virtual ~DrawableString ();
+
+	virtual void ReleaseResources ();
 
 	virtual void Draw (sf::RenderWindow& rwin) { rwin.Draw(*sfString); }
 
@@ -33,9 +41,13 @@ public:
 	virtual float GetRotation () { return sfString->GetRotation(); }
 	virtual void Rotate (float angle) { sfString->Rotate(angle); }
 
-	virtual sf::Vector2f GetScreenSize () {
-		return sf::Vector2f( (sfString->GetRect().Right - sfString->GetRect().Left),
-							(sfString->GetRect().Bottom - sfString->GetRect().Top) );
+	virtual sf::Vector2f GetScreenSize ();
+
+	virtual bool Contains (sf::Vector2f globalPosition) {
+		return false;
+	}
+	virtual bool IsOpaque (sf::Vector2f globalPosition) {
+		return false;
 	}
 };
 

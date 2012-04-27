@@ -3,13 +3,17 @@
 #include "../../GameObjectManager.hpp"
 #include "../../PFWConstants.hpp"
 #include "../../SFMLGameManager.hpp"
+#include <sstream>
+//#include <iostream>
 
-
-
-		#include <iostream>
-
+void GUITextfield::ReleaseResources () {
+	Sprite::ReleaseResources();
+	DrawableString::ReleaseResources();
+}
 
 void GUITextfield::HandleSFEvents (std::list<sf::Event>& sfEvents) {
+	bool output = true;
+
 	std::list<sf::Event>::iterator itSfEvent = sfEvents.begin();
 	while (itSfEvent != sfEvents.end()) {
 
@@ -35,48 +39,32 @@ void GUITextfield::HandleSFEvents (std::list<sf::Event>& sfEvents) {
 			}
 			break;
 			case sf::Event::MouseButtonPressed: {
-				sf::Rect<float> btnBounds(GetScreenBounds());
+				sf::Rect<float> bounds(GetScreenBounds());
 
-				if (btnBounds.Contains(itSfEvent->MouseButton.X, itSfEvent->MouseButton.Y)) {
-					if (!active) {
-						active = true;
+				if (bounds.Contains(itSfEvent->MouseButton.X, itSfEvent->MouseButton.Y)) {
+//std::cout << "contains" << std::endl;
 
-						if (txHover != "") SetImage(txHover);
+					SetActive(true);
 
-						sfString->SetColor(colTextActive);
-
-						textCursor = new ScreenSprite("Content/Textures/textcursor.png", mAlignH, mAlignV, layerDepth);
-
-						GameObjects->Update(0);
-
-						textCursor->SetScale( sf::Vector2f(
-							baseScale.x / 2
-								* (sfString->GetSize() / PFWConstants::baseFontSize)
-									* PFWConstants::fontSizeScaleMultiplier,
-							baseScale.y * 2
-								* (sfString->GetSize() / PFWConstants::baseFontSize)
-									* PFWConstants::fontSizeScaleMultiplier) );
-
-						CalcTextCursorPosY();
-					}
+					CalcTextCursorPosY();
 
 					timeSinceLastFlash = 0;
 					textCursor->SetColor(sf::Color(colTextActive.r, colTextActive.g, colTextActive.b, 255));
 
 					if (GetText() != "") {
-						if (std::string(GetText()).length() == 1) {
-							std::cout << "a.x" << std::endl;
-
-							if ( itSfEvent->MouseButton.X < sfString->TransformToGlobal(sfString->GetCharacterPos(1)).x ) {
+//std::cout << "GetText() != ''" << std::endl;
+						if (GetText().length() == 1) {
+//std::cout << "GetText().length() == 1" << std::endl;
+							if ( itSfEvent->MouseButton.X < sfString->TransformToGlobal(sfString->GetCharacterPos(1)).x / windowFakeScale ) {
+//std::cout << "<" << std::endl;
 								iTextCursor = 0;
 
-								textCursor->SetPosition( sf::Vector2f(
-									x_GetTextCursorX(),
-									textCursorY) );
+								textCursor->SetPosition(sf::Vector2f(GetTextCursorX(), textCursorY));
 
 								break;
 							}
 							else {
+//std::cout << ">" << std::endl;
 								iTextCursor = 1;
 
 								textCursor->SetPosition( sf::Vector2f(GetTextCursorX(), textCursorY) );
@@ -85,8 +73,9 @@ void GUITextfield::HandleSFEvents (std::list<sf::Event>& sfEvents) {
 							}
 						}
 						else {
-							for (unsigned int itChar = 1; itChar < std::string(GetText()).length(); itChar++) {
-								if ( itSfEvent->MouseButton.X < sf::Vector2f(sfString->TransformToGlobal(sfString->GetCharacterPos(itChar))).x ) {
+//std::cout << "GetText().length() != 1" << std::endl;
+							for (unsigned int itChar = 1; itChar < GetText().length(); itChar++) {
+								if ( itSfEvent->MouseButton.X < sfString->TransformToGlobal(sfString->GetCharacterPos(itChar)).x / windowFakeScale ) {
 									iTextCursor = itChar - 1;
 
 									textCursor->SetPosition( sf::Vector2f(GetTextCursorX(), textCursorY) );
@@ -95,8 +84,8 @@ void GUITextfield::HandleSFEvents (std::list<sf::Event>& sfEvents) {
 
 								}
 								else
-								if (itChar == std::string(GetText()).length() - 1) {
-									if ( itSfEvent->MouseButton.X < sfString->TransformToGlobal(sfString->GetCharacterPos(itChar + 1)).x ) {
+								if (itChar == GetText().length() - 1) {
+									if ( itSfEvent->MouseButton.X < sfString->TransformToGlobal(sfString->GetCharacterPos(itChar + 1)).x / windowFakeScale ) {
 										iTextCursor = itChar;
 
 										textCursor->SetPosition( sf::Vector2f(GetTextCursorX(), textCursorY) );
@@ -116,36 +105,108 @@ void GUITextfield::HandleSFEvents (std::list<sf::Event>& sfEvents) {
 					}
 					else {
 						textCursor->SetPosition( sf::Vector2f(
-							x_GetTextCursorX(),
+							x_GetTextCursorX()
+//								+ .9f * -GetScreenSize().x / 2
+																	,
 							textCursorY) );
 					}
 				}
 				else if (active) {
-					active = false;
+					SetActive(false);
 
-					if (txNormal != "") SetImage(txNormal);
-
-					sfString->SetColor(colTextInactive);
-
-					Drawables->PopScreenSpace(textCursor);
-					delete textCursor;
-					textCursor = 0;
+					if (onApply != 0) {
+						onApply();
+					}
 				}
 			} break;
+			case sf::Event::KeyPressed: {
+				if (active) {
+					switch (itSfEvent->Key.Code) {
+						case sf::Key::Delete: {
+							std::string t = GetText();
+
+							SetText( GetText().erase(iTextCursor, 1) );
+
+//							if (!regex_match(GetText(), regexPattern)) {
+//								++iTextCursor;
+//								SetText(t);
+//								break;
+//							}
+
+							textCursor->SetPosition( sf::Vector2f(GetTextCursorX(), textCursorY) );
+							timeSinceLastFlash = 0;
+							textCursor->SetColor(sf::Color(colTextActive.r, colTextActive.g, colTextActive.b, 255));
+
+							output = false;
+						} break;
+						case sf::Key::Return:
+							if (onApply != 0) {
+								onApply();
+
+								output = false;
+							}
+						break;
+						case sf::Key::Left:
+							--iTextCursor;
+							if (iTextCursor < 0) {
+								iTextCursor = 0;
+							}
+
+							textCursor->SetPosition( sf::Vector2f(GetTextCursorX(), textCursorY) );
+							timeSinceLastFlash = 0;
+							textCursor->SetColor(sf::Color(colTextActive.r, colTextActive.g, colTextActive.b, 255));
+						break;
+						case sf::Key::Right:
+							++iTextCursor;
+							if (iTextCursor > (int)GetText().length()) {
+								iTextCursor = GetText().length();
+							}
+
+							textCursor->SetPosition( sf::Vector2f(GetTextCursorX(), textCursorY) );
+							timeSinceLastFlash = 0;
+							textCursor->SetColor(sf::Color(colTextActive.r, colTextActive.g, colTextActive.b, 255));
+						break;
+						case sf::Key::Home:
+							iTextCursor = 0;
+
+							textCursor->SetPosition( sf::Vector2f(GetTextCursorX(), textCursorY) );
+							timeSinceLastFlash = 0;
+							textCursor->SetColor(sf::Color(colTextActive.r, colTextActive.g, colTextActive.b, 255));
+						break;
+						case sf::Key::End:
+							iTextCursor = GetText().length();
+
+							textCursor->SetPosition( sf::Vector2f(GetTextCursorX(), textCursorY) );
+							timeSinceLastFlash = 0;
+							textCursor->SetColor(sf::Color(colTextActive.r, colTextActive.g, colTextActive.b, 255));
+						break;
+						default:
+						break;
+					}
+				}
+			}
 			case sf::Event::TextEntered: {
 				if (active) {
-					if (Game->GetRenderWindow()->GetInput().IsKeyDown(sf::Key::Delete)) {
-						SetText( std::string(GetText()).erase(iTextCursor, 1) );
-
-						textCursor->SetPosition( sf::Vector2f(GetTextCursorX(), textCursorY) );
-						timeSinceLastFlash = 0;
-						textCursor->SetColor(sf::Color(colTextActive.r, colTextActive.g, colTextActive.b, 255));
-					}
-					else {
+//					if (Game->GetRenderWindow()->GetInput().IsKeyDown(sf::Key::Delete)) {
+//						SetText( std::string(GetText()).erase(iTextCursor, 1) );
+//
+//						textCursor->SetPosition( sf::Vector2f(GetTextCursorX(), textCursorY) );
+//						timeSinceLastFlash = 0;
+//						textCursor->SetColor(sf::Color(colTextActive.r, colTextActive.g, colTextActive.b, 255));
+//					}
+//					else {
 						switch (itSfEvent->Text.Unicode) {
 							case 8: // backspace
 								if (iTextCursor != 0) {
-									SetText( std::string(GetText()).erase(--iTextCursor, 1) );
+									std::string t = GetText();
+
+									SetText( GetText().erase(--iTextCursor, 1) );
+
+//									if (!regex_match(GetText(), regexPattern)) {
+//										++iTextCursor;
+//										SetText(t);
+//										break;
+//									}
 
 									textCursor->SetPosition( sf::Vector2f(GetTextCursorX(), textCursorY) );
 									timeSinceLastFlash = 0;
@@ -153,10 +214,20 @@ void GUITextfield::HandleSFEvents (std::list<sf::Event>& sfEvents) {
 
 									if (GetText() == "") {
 										textCursor->SetPosition( sf::Vector2f(
-											x_GetTextCursorX(),
+											x_GetTextCursorX()
+//												+ .9f * -GetScreenSize().x / 2
+																						,
 											textCursorY) );
 									}
+
+									output = false;
 								}
+							break;
+							case 127:
+								// ahol rendesen elkapná ezis a Delete-et ott lekell kezelni, hogy
+								// ne kerüljön defaultba
+							break;
+							case 13: // carriage return
 							break;
 	//						case //286:
 	//							127:
@@ -168,26 +239,49 @@ void GUITextfield::HandleSFEvents (std::list<sf::Event>& sfEvents) {
 	//							textCursor->SetColor(sf::Color(colTextActive.r, colTextActive.g, colTextActive.b, 255));
 	//						break;
 							default:
-								std::string t = GetText();
+								if (output) {
+									sf::Uint32 u = itSfEvent->Text.Unicode;
 
-								SetText( std::string(GetText()).insert(iTextCursor++, 1, char(itSfEvent->Text.Unicode)) );
+									bool printable = false;
 
-								if (sfString->GetRect().GetWidth() >= GetScreenSize().x) {
-									iTextCursor--;
-									SetText(t);
-									break;
+									for (unsigned int i = 0; i != PFWConstants::charset_length; i++) {
+										if (u == PFWConstants::charset[i]) {
+											printable = true;
+											break;
+										}
+									}
+
+									if (!printable)
+										break;
+
+									std::string t = GetText();
+
+									SetText( GetText().insert(iTextCursor++, 1, u) );
+
+									if (!regex_match(GetText(), regexPattern)) {
+										--iTextCursor;
+										SetText(t);
+										break;
+									}
+
+									if (sfString->GetRect().GetWidth() >= GetScreenSize().x * .9f) {
+										iTextCursor--;
+										SetText(t);
+										break;
+									}
+
+									textCursor->SetPosition( sf::Vector2f(GetTextCursorX(), textCursorY) );
+									timeSinceLastFlash = 0;
+									textCursor->SetColor(sf::Color(colTextActive.r, colTextActive.g, colTextActive.b, 255));
+
+									output = false;
 								}
-
-								textCursor->SetPosition( sf::Vector2f(GetTextCursorX(), textCursorY) );
-								timeSinceLastFlash = 0;
-								textCursor->SetColor(sf::Color(colTextActive.r, colTextActive.g, colTextActive.b, 255));
 							break;
 						}
-					}
+//					}
 				}
 			} break;
 			default:
-				// don't care about no other event types
 			break;
 		}
 
@@ -220,14 +314,13 @@ sf::Vector2f GUITextfield::GetScreenSize () {
 	return sf::Vector2f(widthWoBg * windowFakeScale, height);
 }
 
-
 sf::Rect<float> GUITextfield::GetScreenBounds () {
 	sf::Vector2f screenSize(GetScreenSize());
 	sf::Vector2f fakePos(CalcFakePos());
 
-	return sf::Rect<float>(fakePos.x,
+	return sf::Rect<float>(fakePos.x + .9f * -GetScreenSize().x / 2,
 							fakePos.y - (screenSize.y / 2),
-							fakePos.x + (screenSize.x),
+							fakePos.x + (screenSize.x) - .9f * -GetScreenSize().x / 2,
 							fakePos.y + (screenSize.y / 2)
 							 );
 }
@@ -249,12 +342,16 @@ float GUITextfield::GetTextCursorX () {
 		break;
 		case CENTER:
 			return sfString->TransformToGlobal(sfString->GetCharacterPos(iTextCursor)).x /
-				windowFakeScale - CalcFakePos().x / windowFakeScale + basePos.x;
+				windowFakeScale - CalcFakePos().x / windowFakeScale + basePos.x
+					//- GetScreenSize().x / 2
+					;
 		break;
 		default:// RIGHT:
 			return sfString->TransformToGlobal(sfString->GetCharacterPos(iTextCursor)).x / windowFakeScale
 				- CalcFakePos().x / windowFakeScale + basePos.x
-				- GetScreenSize().x / windowFakeScale;
+				- GetScreenSize().x / windowFakeScale
+				//+ .9f * -GetScreenSize().x / 2
+				;
 		break;
 	}
 }
@@ -265,10 +362,11 @@ float GUITextfield::x_GetTextCursorX () {
 			return CalcFakePos().x / windowFakeScale;
 		break;
 		case CENTER:
-			return CalcFakePos().x / windowFakeScale - GetScreenSize().x / windowFakeScale;
+			return basePos.x - (.9f * GetScreenSize().x / 2) / windowFakeScale;
 		break;
 		default:// RIGHT:
-			return CalcFakePos().x / windowFakeScale - PFWConstants::baseResolution.x;
+			return CalcFakePos().x / windowFakeScale - PFWConstants::baseResolution.x
+				- (.9f * GetScreenSize().x / 2) / windowFakeScale;
 		break;
 	}
 }
@@ -284,7 +382,9 @@ void GUITextfield::CalcTextCursorPosY () {
 			textCursorY = baseLineY - textCursor->GetScreenSize().y / windowFakeScale;
 		break;
 		case MIDDLE:
-			textCursorY = baseLineY - PFWConstants::baseResolution.y / 2 - (textCursor->GetScreenSize().y / windowFakeScale) / 2;
+			textCursorY = basePos.y// - PFWConstants::baseResolution.y / 2
+//				- (textCursor->GetScreenSize().y / windowFakeScale) / 2
+				;
 		break;
 		case BOTTOM:
 			textCursorY = baseLineY - PFWConstants::baseResolution.y;
@@ -294,12 +394,17 @@ void GUITextfield::CalcTextCursorPosY () {
 	sfString->SetText(t);
 }
 
-void GUITextfield::SetText (std::string text) {
+void GUITextfield::SetText (std::string text, bool resetCursorToEnd) {
 	sfString->SetText(text);
 
 	sfString->SetCenter(0, height / sfString->GetScale().y / 2);
 
 	SetFakePos(CalcFakePos());
+
+	if (textCursor != 0 && resetCursorToEnd) {
+		iTextCursor = text.length();
+		textCursor->SetPosition( sf::Vector2f(GetTextCursorX(), textCursorY) );
+	}
 }
 
 sf::Vector2f GUITextfield::CalcFakePos () {
@@ -307,8 +412,8 @@ sf::Vector2f GUITextfield::CalcFakePos () {
 
 	switch (mAlignH) {
 		case LEFT:
-			fakePos.x = basePos.x * windowFakeScale;
 		break;
+			fakePos.x = basePos.x * windowFakeScale;
 		case CENTER:
 			fakePos.x = Game->GetRenderWindow()->GetWidth() / 2 + basePos.x * windowFakeScale;
 		break;
@@ -330,4 +435,72 @@ sf::Vector2f GUITextfield::CalcFakePos () {
 	}
 
 	return fakePos;
+}
+
+void GUITextfield::SetActive (bool active) {
+	if (this->active == active)
+		return;
+
+	this->active = active;
+
+	if (active) {
+		if (txHover != "") SetImage(txHover);
+
+		sfString->SetColor(colTextActive);
+
+		textCursor = new ScreenSprite("Content/Textures/textcursor.png",
+									mAlignH, mAlignV,
+									layerDepth);
+		drawManager->AddScreenSpace(textCursor);
+
+		textCursor->SetScale( sf::Vector2f(
+			baseScale.x / 2
+				* (sfString->GetSize() / PFWConstants::baseFontSize)
+					* PFWConstants::fontSizeScaleMultiplier,
+			baseScale.y * 2
+				* (sfString->GetSize() / PFWConstants::baseFontSize)
+					* PFWConstants::fontSizeScaleMultiplier) );
+
+		textCursor->SetFakeStuff(Game->GetWindowFakeScale());
+	}
+	else {
+		if (onApply != 0) onApply();
+
+		if (txNormal != "") SetImage(txNormal);
+
+		sfString->SetColor(colTextInactive);
+
+		drawManager->PopScreenSpace(textCursor);
+		delete textCursor;
+		textCursor = 0;
+	}
+}
+
+void GUITextfield::SetFakeScale (sf::Vector2f fakeScale) {
+	if (sfSprite) sfSprite->SetScale(fakeScale);
+	sfString->SetScale(fakeScale);
+
+	CalcHeight();
+	if (textCursor != 0) CalcTextCursorPosY();
+}
+
+void GUITextfield::SetFakePos (sf::Vector2f fakePos) {
+	if (sfSprite) sfSprite->SetPosition(fakePos);
+
+	sf::Vector2f textOffset(mAlignH != LEFT ? sf::Vector2f(-GetScreenSize().x / 2, 0)
+											: sf::Vector2f(0, 0));
+//	switch (mAlignH) {
+//		case LEFT:
+//			textOffset = sf::Vector2f(0, 0);
+//		break;
+//		case CENTER:
+//			textOffset = sf::Vector2f(-GetScreenSize().x / 2, 0);
+//		break;
+//		case RIGHT:
+//			textOffset = sf::Vector2f(-GetScreenSize().x / 2, 0);
+//		break;
+//	}
+	sfString->SetPosition(fakePos + .9f * textOffset);
+
+	if (textCursor != 0) CalcTextCursorPosY();
 }

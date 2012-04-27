@@ -2,106 +2,258 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="Infiltrator_dev_CodeBlocks" />
+		<Option title="Infiltrator" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="bin/Debug/Infiltrator_dev_CodeBlocks" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj/Debug/" />
+				<Option output="bin\Debug\Infiltrator_debug" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\Debug\" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
+					<Add option="-std=c++0x" />
 					<Add option="-g" />
+					<Add option="-O0" />
+					<Add option="-DMALLOC_CHECK_" />
 					<Add option="-DSFML_DYNAMIC" />
-					<Add directory="../../../Boost/boost_1_47_0" />
+					<Add directory="..\..\..\Boost\boost_1_47_0" />
 				</Compiler>
 				<Linker>
 					<Add option="-lsfml-audio" />
 					<Add option="-lsfml-graphics" />
 					<Add option="-lsfml-window" />
 					<Add option="-lsfml-system" />
+					<Add option="-lprotobuf" />
+					<Add library="\home\matyi\Dev\Boost\boost_1_47_0\libs\regex\build\gcc\libboost_regex-gcc-1_47.a" />
+					<Add library="\home\matyi\Dev\Boost\boost_1_47_0\bin.v2\libs\thread\build\gcc-4.6.1\release\link-static\threading-multi\libboost_thread.a" />
 				</Linker>
 			</Target>
 			<Target title="Release">
-				<Option output="bin/Release/Infiltrator_dev_CodeBlocks" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj/Release/" />
-				<Option type="1" />
+				<Option output="bin\Release\Infiltrator" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\Release\" />
+				<Option type="0" />
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add option="-std=c++0x" />
+					<Add option="-DSFML_DYNAMIC" />
+					<Add directory="..\..\..\Boost\boost_1_47_0" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
+					<Add option="-lsfml-audio" />
+					<Add option="-lsfml-graphics" />
+					<Add option="-lsfml-window" />
+					<Add option="-lsfml-system" />
+					<Add option="-lprotobuf" />
+					<Add library="\home\matyi\Dev\Boost\boost_1_47_0\libs\regex\build\gcc\libboost_regex-gcc-1_47.a" />
+					<Add library="\home\matyi\Dev\Boost\boost_1_47_0\bin.v2\libs\thread\build\gcc-4.6.1\release\link-static\threading-multi\libboost_thread.a" />
+				</Linker>
+			</Target>
+			<Target title="DebugWindows">
+				<Option output="bin\DebugWindows\Infiltrator_debug" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\DebugWindows\" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-O0" />
+					<Add option="-DMALLOC_CHECK_" />
+					<Add directory="..\..\..\Boost\boost_1_47_0" />
+					<Add directory="..\..\..\SFML\SFML-1.6\mingw\include" />
+					<Add directory="..\..\..\protoc\protobuf-2.4.1\include" />
+					<Add directory="..\..\..\protobuf\include" />
+				</Compiler>
+				<Linker>
+					<Add option="-lsfml-audio-s" />
+					<Add option="-lsfml-graphics-s" />
+					<Add option="-lsfml-window-s" />
+					<Add option="-lsfml-system-s" />
+					<Add library="..\..\..\MinGW\lib\libprotobuf.a" />
+					<Add library="..\..\..\Boost\boost_1_47_0\libs\regex\build\gcc\libboost_regex-gcc-1_47.a" />
+					<Add directory="..\..\..\SFML\SFML-1.6\mingw\lib" />
+				</Linker>
+			</Target>
+			<Target title="ReleaseWindows">
+				<Option output="bin\ReleaseWindows\Infiltrator" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\ReleaseWindows\" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add directory="..\..\..\Boost\boost_1_47_0" />
+					<Add directory="..\..\..\SFML\SFML-1.6\mingw\include" />
+					<Add directory="..\..\..\protoc\protobuf-2.4.1\include" />
+					<Add directory="..\..\..\protobuf\include" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add option="-lsfml-audio-s" />
+					<Add option="-lsfml-graphics-s" />
+					<Add option="-lsfml-window-s" />
+					<Add option="-lsfml-system-s" />
+					<Add library="..\..\..\MinGW\lib\libprotobuf.a" />
+					<Add library="..\..\..\Boost\boost_1_47_0\libs\regex\build\gcc\libboost_regex-gcc-1_47.a" />
+					<Add directory="..\..\..\SFML\SFML-1.6\mingw\lib" />
 				</Linker>
 			</Target>
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="AI\Navigation.cpp" />
+		<Unit filename="AI\Navigation.hpp" />
 		<Unit filename="Character.cpp" />
 		<Unit filename="Character.hpp" />
-		<Unit filename="GameState_Logos.cpp" />
-		<Unit filename="GameState_Logos.hpp" />
-		<Unit filename="PFrameWork/ColliderManager.cpp" />
-		<Unit filename="PFrameWork/ColliderManager.hpp" />
-		<Unit filename="PFrameWork/ConfigParser.cpp" />
-		<Unit filename="PFrameWork/ConfigParser.hpp" />
-		<Unit filename="PFrameWork/Conversion.cpp" />
-		<Unit filename="PFrameWork/Conversion.hpp" />
-		<Unit filename="PFrameWork/DrawManager.cpp" />
-		<Unit filename="PFrameWork/DrawManager.hpp" />
-		<Unit filename="PFrameWork/GO/AnimatedSprite.cpp" />
-		<Unit filename="PFrameWork/GO/AnimatedSprite.hpp" />
-		<Unit filename="PFrameWork/GO/Colliders.hpp" />
-		<Unit filename="PFrameWork/GO/Drawable.hpp" />
-		<Unit filename="PFrameWork/GO/DrawableBase.hpp" />
-		<Unit filename="PFrameWork/GO/DrawableString.cpp" />
-		<Unit filename="PFrameWork/GO/DrawableString.hpp" />
-		<Unit filename="PFrameWork/GO/GUI/GUIButton.cpp" />
-		<Unit filename="PFrameWork/GO/GUI/GUIButton.hpp" />
-		<Unit filename="PFrameWork/GO/GUI/GUITextfield.cpp" />
-		<Unit filename="PFrameWork/GO/GUI/GUITextfield.hpp" />
-		<Unit filename="PFrameWork/GO/GUI/GUIToggleButton.cpp" />
-		<Unit filename="PFrameWork/GO/GUI/GUIToggleButton.hpp" />
-		<Unit filename="PFrameWork/GO/GameObject.hpp" />
-		<Unit filename="PFrameWork/GO/ScreenSpaceDrawable.cpp" />
-		<Unit filename="PFrameWork/GO/ScreenSpaceDrawable.hpp" />
-		<Unit filename="PFrameWork/GO/ScreenSprite.hpp" />
-		<Unit filename="PFrameWork/GO/ScreenString.hpp" />
-		<Unit filename="PFrameWork/GO/Shape.hpp" />
-		<Unit filename="PFrameWork/GO/Sprite.cpp" />
-		<Unit filename="PFrameWork/GO/Sprite.hpp" />
-		<Unit filename="PFrameWork/GO/TimeAnimatedSprite.cpp" />
-		<Unit filename="PFrameWork/GO/TimeAnimatedSprite.hpp" />
-		<Unit filename="PFrameWork/GO/WorldAnimatedSprite.hpp" />
-		<Unit filename="PFrameWork/GO/WorldDrawable.hpp" />
-		<Unit filename="PFrameWork/GO/WorldShape.hpp" />
-		<Unit filename="PFrameWork/GO/WorldSprite.hpp" />
-		<Unit filename="PFrameWork/GO/WorldString.hpp" />
-		<Unit filename="PFrameWork/GameObjectManager.cpp" />
-		<Unit filename="PFrameWork/GameObjectManager.hpp" />
-		<Unit filename="PFrameWork/PFWConstants.hpp" />
-		<Unit filename="PFrameWork/ResourceManager.cpp" />
-		<Unit filename="PFrameWork/ResourceManager.hpp" />
-		<Unit filename="PFrameWork/SFMLEventHandler.hpp" />
-		<Unit filename="PFrameWork/SFMLGameManager.cpp" />
-		<Unit filename="PFrameWork/SFMLGameManager.hpp" />
-		<Unit filename="PFrameWork/SpriteAnimationManager.cpp" />
-		<Unit filename="PFrameWork/SpriteAnimationManager.hpp" />
-		<Unit filename="PFrameWork/State/GameState.cpp" />
-		<Unit filename="PFrameWork/State/GameState.hpp" />
-		<Unit filename="PFrameWork/State/GameStateMachine.cpp" />
-		<Unit filename="PFrameWork/State/GameStateMachine.hpp" />
-		<Unit filename="PFrameWork/Utilities.cpp" />
-		<Unit filename="PFrameWork/Utilities.hpp" />
-		<Unit filename="PFrameWork/WorldCamera2D.cpp" />
-		<Unit filename="PFrameWork/WorldCamera2D.hpp" />
+		<Unit filename="Chest.hpp" />
+		<Unit filename="Coin.cpp" />
+		<Unit filename="Coin.hpp" />
+		<Unit filename="DarkFader.cpp" />
+		<Unit filename="DarkFader.hpp" />
+		<Unit filename="EditorLevelInfobar.cpp" />
+		<Unit filename="EditorLevelInfobar.hpp" />
+		<Unit filename="EditorMenubar.cpp" />
+		<Unit filename="EditorMenubar.hpp" />
+		<Unit filename="EditorStatusBar.cpp" />
+		<Unit filename="EditorStatusBar.hpp" />
+		<Unit filename="EditorToolButton.cpp" />
+		<Unit filename="EditorToolButton.hpp" />
+		<Unit filename="EditorToolbar.cpp" />
+		<Unit filename="EditorToolbar.hpp" />
+		<Unit filename="FullScreenEventCatcherTint.cpp" />
+		<Unit filename="FullScreenEventCatcherTint.hpp" />
+		<Unit filename="GUISlider.cpp" />
+		<Unit filename="GUISlider.hpp" />
+		<Unit filename="GameStates\GameState_BasePlayable.cpp" />
+		<Unit filename="GameStates\GameState_BasePlayable.hpp" />
+		<Unit filename="GameStates\GameState_Editor.cpp" />
+		<Unit filename="GameStates\GameState_Editor.hpp" />
+		<Unit filename="GameStates\GameState_Logos.cpp" />
+		<Unit filename="GameStates\GameState_Logos.hpp" />
+		<Unit filename="GameStates\GameState_MainMenu.cpp" />
+		<Unit filename="GameStates\GameState_MainMenu.hpp" />
+		<Unit filename="GameStates\GameState_Play.cpp" />
+		<Unit filename="GameStates\GameState_Play.hpp" />
+		<Unit filename="GameplayHUD.cpp" />
+		<Unit filename="GameplayHUD.hpp" />
+		<Unit filename="Goal.cpp" />
+		<Unit filename="Goal.hpp" />
+		<Unit filename="GroundSprite.cpp" />
+		<Unit filename="GroundSprite.hpp" />
+		<Unit filename="Guard.cpp" />
+		<Unit filename="Guard.hpp" />
+		<Unit filename="MenuStates\MenuState_Credits.cpp" />
+		<Unit filename="MenuStates\MenuState_Credits.hpp" />
+		<Unit filename="MenuStates\MenuState_EditorLevelLoad.cpp" />
+		<Unit filename="MenuStates\MenuState_EditorLevelLoad.hpp" />
+		<Unit filename="MenuStates\MenuState_EditorPause.cpp" />
+		<Unit filename="MenuStates\MenuState_EditorPause.hpp" />
+		<Unit filename="MenuStates\MenuState_Language.cpp" />
+		<Unit filename="MenuStates\MenuState_Language.hpp" />
+		<Unit filename="MenuStates\MenuState_LevelFinish.cpp" />
+		<Unit filename="MenuStates\MenuState_LevelFinish.hpp" />
+		<Unit filename="MenuStates\MenuState_MainMenu.cpp" />
+		<Unit filename="MenuStates\MenuState_MainMenu.hpp" />
+		<Unit filename="MenuStates\MenuState_Options.cpp" />
+		<Unit filename="MenuStates\MenuState_Options.hpp" />
+		<Unit filename="MenuStates\MenuState_PlayLevelLoad.cpp" />
+		<Unit filename="MenuStates\MenuState_PlayLevelLoad.hpp" />
+		<Unit filename="MenuStates\MenuState_PlayPause.cpp" />
+		<Unit filename="MenuStates\MenuState_PlayPause.hpp" />
+		<Unit filename="MenuStates\MenuState_StartLogin.cpp" />
+		<Unit filename="MenuStates\MenuState_StartLogin.hpp" />
+		<Unit filename="MyMagicNumbers.hpp" />
+		<Unit filename="Objective.hpp" />
+		<Unit filename="PFrameWork\ColliderManager.cpp" />
+		<Unit filename="PFrameWork\ColliderManager.hpp" />
+		<Unit filename="PFrameWork\ConfigParser.cpp" />
+		<Unit filename="PFrameWork\ConfigParser.hpp" />
+		<Unit filename="PFrameWork\Conversion.cpp" />
+		<Unit filename="PFrameWork\Conversion.hpp" />
+		<Unit filename="PFrameWork\DrawManager.cpp" />
+		<Unit filename="PFrameWork\DrawManager.hpp" />
+		<Unit filename="PFrameWork\GO\AnimatedSprite.cpp" />
+		<Unit filename="PFrameWork\GO\AnimatedSprite.hpp" />
+		<Unit filename="PFrameWork\GO\BaseSound.hpp" />
+		<Unit filename="PFrameWork\GO\Colliders.hpp" />
+		<Unit filename="PFrameWork\GO\DrawableBase.cpp" />
+		<Unit filename="PFrameWork\GO\DrawableBase.hpp" />
+		<Unit filename="PFrameWork\GO\DrawableString.cpp" />
+		<Unit filename="PFrameWork\GO\DrawableString.hpp" />
+		<Unit filename="PFrameWork\GO\GUI\GUIButton.cpp" />
+		<Unit filename="PFrameWork\GO\GUI\GUIButton.hpp" />
+		<Unit filename="PFrameWork\GO\GUI\GUITextfield.cpp" />
+		<Unit filename="PFrameWork\GO\GUI\GUITextfield.hpp" />
+		<Unit filename="PFrameWork\GO\GUI\GUIToggleButton.cpp" />
+		<Unit filename="PFrameWork\GO\GUI\GUIToggleButton.hpp" />
+		<Unit filename="PFrameWork\GO\GameObject.cpp" />
+		<Unit filename="PFrameWork\GO\GameObject.hpp" />
+		<Unit filename="PFrameWork\GO\Music.cpp" />
+		<Unit filename="PFrameWork\GO\Music.hpp" />
+		<Unit filename="PFrameWork\GO\ScreenShape.hpp" />
+		<Unit filename="PFrameWork\GO\ScreenSpaceDrawable.cpp" />
+		<Unit filename="PFrameWork\GO\ScreenSpaceDrawable.hpp" />
+		<Unit filename="PFrameWork\GO\ScreenSprite.cpp" />
+		<Unit filename="PFrameWork\GO\ScreenSprite.hpp" />
+		<Unit filename="PFrameWork\GO\ScreenString.hpp" />
+		<Unit filename="PFrameWork\GO\ScreenTimeAnimatedSprite.hpp" />
+		<Unit filename="PFrameWork\GO\Shape.cpp" />
+		<Unit filename="PFrameWork\GO\Shape.hpp" />
+		<Unit filename="PFrameWork\GO\SoundEffect.cpp" />
+		<Unit filename="PFrameWork\GO\SoundEffect.hpp" />
+		<Unit filename="PFrameWork\GO\Sprite.cpp" />
+		<Unit filename="PFrameWork\GO\Sprite.hpp" />
+		<Unit filename="PFrameWork\GO\TimeAnimatedSprite.cpp" />
+		<Unit filename="PFrameWork\GO\TimeAnimatedSprite.hpp" />
+		<Unit filename="PFrameWork\GO\WorldAnimatedSprite.hpp" />
+		<Unit filename="PFrameWork\GO\WorldDrawable.hpp" />
+		<Unit filename="PFrameWork\GO\WorldShape.hpp" />
+		<Unit filename="PFrameWork\GO\WorldSprite.hpp" />
+		<Unit filename="PFrameWork\GO\WorldString.hpp" />
+		<Unit filename="PFrameWork\GO\WorldTimeAnimatedSprite.hpp" />
+		<Unit filename="PFrameWork\GameObjectManager.cpp" />
+		<Unit filename="PFrameWork\GameObjectManager.hpp" />
+		<Unit filename="PFrameWork\PFWConstants.hpp" />
+		<Unit filename="PFrameWork\ResourceManager.cpp" />
+		<Unit filename="PFrameWork\ResourceManager.hpp" />
+		<Unit filename="PFrameWork\SFMLEventHandler.hpp" />
+		<Unit filename="PFrameWork\SFMLGameManager.cpp" />
+		<Unit filename="PFrameWork\SFMLGameManager.hpp" />
+		<Unit filename="PFrameWork\SoundManager.cpp" />
+		<Unit filename="PFrameWork\SoundManager.hpp" />
+		<Unit filename="PFrameWork\SpriteAnimationManager.cpp" />
+		<Unit filename="PFrameWork\SpriteAnimationManager.hpp" />
+		<Unit filename="PFrameWork\State.cpp" />
+		<Unit filename="PFrameWork\State.hpp" />
+		<Unit filename="PFrameWork\StateMachine.hpp" />
+		<Unit filename="PFrameWork\TINI\TINI.cpp" />
+		<Unit filename="PFrameWork\TINI\TINI.hpp" />
+		<Unit filename="PFrameWork\Utilities.cpp" />
+		<Unit filename="PFrameWork\Utilities.hpp" />
+		<Unit filename="PFrameWork\WorldCamera2D.cpp" />
+		<Unit filename="PFrameWork\WorldCamera2D.hpp" />
 		<Unit filename="Player.cpp" />
 		<Unit filename="Player.hpp" />
-		<Unit filename="Wall.cpp" />
-		<Unit filename="Wall.hpp" />
+		<Unit filename="Princess.cpp" />
+		<Unit filename="Princess.hpp" />
+		<Unit filename="Session.cpp" />
+		<Unit filename="Session.hpp" />
+		<Unit filename="TilingButton.cpp" />
+		<Unit filename="TilingButton.hpp" />
+		<Unit filename="TilingScreenSprite.cpp" />
+		<Unit filename="TilingScreenSprite.hpp" />
+		<Unit filename="VisualItemSlot.cpp" />
+		<Unit filename="VisualItemSlot.hpp" />
+		<Unit filename="WallCircle.cpp" />
+		<Unit filename="WallCircle.hpp" />
+		<Unit filename="WallRectangle.cpp" />
+		<Unit filename="WallRectangle.hpp" />
 		<Unit filename="main.cpp" />
+		<Unit filename="proto\InfiltratorLevel.pb.cc" />
+		<Unit filename="proto\InfiltratorLevel.pb.h" />
+		<Unit filename="proto\InfiltratorProfile.pb.cc" />
+		<Unit filename="proto\InfiltratorProfile.pb.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />

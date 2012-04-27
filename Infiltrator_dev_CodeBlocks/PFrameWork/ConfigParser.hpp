@@ -67,6 +67,8 @@ public:
 
 	CfgSectionMap::iterator GetIteratorEnd () { return sections.end(); }
 
+	bool Exists (std::string section);
+
 	friend class ConfigParser;
 };
 // === CfgContents //
@@ -93,6 +95,5 @@ public:
 };
 
 #define CfgParser ConfigParser::Instance()
-
 
 #endif // CONFIGPARSER_HPP

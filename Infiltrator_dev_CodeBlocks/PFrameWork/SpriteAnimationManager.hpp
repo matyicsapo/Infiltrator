@@ -15,6 +15,8 @@ struct SpriteAnimation {
 
 class SpriteAnimationManager {
 private:
+	static SpriteAnimationManager* instance;
+
 	std::map<std::string, SpriteAnimation*> animations;
 
     SpriteAnimationManager () {}
@@ -24,8 +26,12 @@ private:
 	SpriteAnimationManager (SpriteAnimationManager const&);
 	SpriteAnimationManager& operator= (SpriteAnimationManager const&);
 
+	SpriteAnimationManager* mInstance;
+
 public:
 	static SpriteAnimationManager* Instance ();
+
+	static void Release ();
 
 	void LoadAnimations (std::string cfgFile);
 	void UnloadAnimation (std::string animName);

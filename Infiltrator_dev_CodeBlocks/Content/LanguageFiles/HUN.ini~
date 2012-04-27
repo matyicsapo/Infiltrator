@@ -1,0 +1,111 @@
+lang=Magyar
+
+logofile=HUN.png
+
+[misc]
+loading=Töltés
+caption_profile=Profil
+caption_language=Nyelv
+
+[menu_login]
+create_btn=Új
+start_btn=Start
+
+[menu_main]
+play=Játék
+editor=Pálya Szerkesztő
+credits=Infó
+
+[menu_load]
+main=Fő Pályák
+user=Felhasználói Pályák
+
+[menu]
+back=Vissza
+exittomain=Kilépés a Főmenübe
+exitgame=Kilépés
+cancel=Mégse
+
+[menu_options]
+caption=Beállítások
+caption_graphics=Grafika
+caption_resolution=Felbontás
+caption_fullscr=Teljes képernyő
+caption_audio=Hang
+caption_vol_master=Fő hangerő
+caption_vol_music=Zene hangerő
+caption_vol_effect=Effekt hangerő
+;revert=Visszaállítás
+;apply=Alkalmazás
+
+[menu_editorpause]
+edit=Szerkesztés
+test=Teszt
+save=Mentés
+load=Betöltés
+
+[menu_playpause]
+resume=Folytatás
+restart=Újrakezdés
+
+[editor_menubar]
+colliders=Falak
+ground=Talaj
+characters=Karakterek
+levelinfo=Pálya Infó
+newmap=Új pálya
+
+[editor_tools]
+rockwall=Kőfal
+rock=Kő
+bush=Bokor
+pine=Fenyő
+roof=Tető
+road=Út
+player=Játékos
+guard=Őr
+princess=Hercegnő
+waypoint=Útpont
+gold=Érme
+chest=Kincs
+goal=Cél
+
+[editor_levelinfo]
+name=Pályanév
+size=Pályaméret
+objectives=Küldetések
+navmap=NavMap:
+navmap_none=Nincs
+navmap_got=Van
+navmap_changed=Változott
+gennavmap=Generálás
+shownavmap=Mutat:
+
+[interact]
+chest_collect=hogy felszedd
+princess_follow=hogy kövessen
+princess_stop=hogy megálljon
+
+[HUD]
+currobj=Küldetés
+
+[credits]
+creator_caption=Készítette:
+creator_name=Csapó Matyi
+creator_contact=matyicsapo@gmail.com
+sound_caption=Hangok:
+sound_name=jogtiszta, internetről
+sound_contact=
+thanks=Lehetségessé tették:
+thanks1=SFML(sfml-dev.org) Laurent Gomilla által
+thanks2=Boost C++ könyvtárak (boost.org)
+
+[levelfinish]
+re_success=Újra
+re_fail=Újra
+tomm=a Főmenübe
+congrats=Nagyszerű!
+won=Sikeresen teljesítetted a pályát!
+lost=Elkaptak!
+gold=Felszedett arany:
+allgold=Összes arany:

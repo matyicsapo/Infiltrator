@@ -3,18 +3,7 @@
 
 #include <SFML/System/Vector2.hpp>
 
-#include "../GameObjectManager.hpp"
-
 class GameObject {
-	friend class GameObjectManager;
-
-private:
-	void Reset (float windowFakeScale) {
-		this->windowFakeScale = windowFakeScale;
-		SetFakeScale(CalcFakeScale());
-		SetFakePos(CalcFakePos());
-	}
-
 protected:
 	float windowFakeScale;
 
@@ -30,31 +19,29 @@ protected:
 	virtual void SetFakePos (sf::Vector2f fakePos) = 0;
 
 public:
-	GameObject () : windowFakeScale(1), baseScale(1, 1) { GameObjects->Add(this); }
+	const unsigned int ID;
+	const unsigned int entityType;
 
-	virtual ~GameObject () { GameObjects->Pop(this); }
+	GameObject (unsigned int entityType = 0);
+	GameObject (GameObject const& xGameObject);
 
-	virtual void SetPosition (sf::Vector2f pos) {
-		basePos = pos;
-		SetFakePos(CalcFakePos());
-	}
-	sf::Vector2f GetPosition () { return basePos; }
-	virtual void Move (sf::Vector2f offset) {
-		basePos += offset;
-		SetFakePos(CalcFakePos());
-	}
+	virtual ~GameObject ();
 
-	virtual void SetScale (sf::Vector2f scale) {
-		baseScale = scale;
-		SetFakeScale(CalcFakeScale());
-	}
-	sf::Vector2f GetScale () { return baseScale; }
+	void SetFakeStuff (float windowFakeScale);
+
+	virtual void ReleaseResources () {};
+
+	virtual void SetPosition (sf::Vector2f pos);
+	sf::Vector2f GetPosition ();
+	virtual void Move (sf::Vector2f offset);
+
+	virtual void SetScale (float scale);
+	virtual void SetScale (sf::Vector2f scale);
+	sf::Vector2f GetScale ();
 
 	virtual void SetRotation (float rotation) = 0;
 	virtual float GetRotation () = 0;
 	virtual void Rotate (float angle) = 0;
-
-	virtual sf::Vector2f GetScreenSize () = 0;
 };
 
 #endif // GAMEOBJECT_HPP

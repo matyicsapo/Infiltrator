@@ -6,14 +6,14 @@
 
 class WorldSprite : public Sprite, public WorldDrawable {
 public:
-	WorldSprite (std::string textureFile, int layerDepth = 0)
-		: DrawableBase(layerDepth), Sprite(textureFile, layerDepth), WorldDrawable(layerDepth) {}
+	WorldSprite (std::string textureFile, int layerDepth = 0, unsigned int entityType = 0)
+		: GameObject(entityType), DrawableBase(layerDepth, entityType), Sprite(textureFile, layerDepth, entityType), WorldDrawable(layerDepth, entityType) {}
 
-	WorldSprite (int layerDepth = 0)
-		: DrawableBase(layerDepth), Sprite(layerDepth), WorldDrawable(layerDepth) {}
+	WorldSprite (int layerDepth = 0, unsigned int entityType = 0)
+		: GameObject(entityType), DrawableBase(layerDepth, entityType), Sprite(layerDepth, entityType), WorldDrawable(layerDepth, entityType) {}
 
     WorldSprite (WorldSprite const& xWorldSprite)
-		: DrawableBase(xWorldSprite), Sprite(xWorldSprite), WorldDrawable(xWorldSprite) {}
+		: GameObject(xWorldSprite), DrawableBase(xWorldSprite), Sprite(xWorldSprite), WorldDrawable(xWorldSprite) {}
 };
 
 #endif // WORLDSPRITE_HPP

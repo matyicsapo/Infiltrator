@@ -1,15 +1,22 @@
 #ifndef GAMEOBJECTMANAGER_HPP
 #define GAMEOBJECTMANAGER_HPP
 
-#include <list>
+#include <map>
 #include <vector>
 
 class GameObject;
 
+typedef std::map<unsigned int, GameObject*> EntityMap;
+
+typedef std::map<unsigned int, EntityMap> TypeMap;
+
 class GameObjectManager {
 private:
-	std::list<GameObject*> allGameObjects;
-	std::vector<GameObject*> newGameObjects;
+	int lastID;
+
+	TypeMap allGOs;
+	TypeMap newGOs;
+	std::vector<GameObject*> blackList;
 
 	float windowFakeScale;
 
@@ -24,9 +31,16 @@ public:
 	static GameObjectManager* Instance ();
 
 	void Add (GameObject* go);
-	void Pop (GameObject* go) { allGameObjects.remove(go); }
+	void Pop (GameObject* go);
 
-	void Update (float windowFakeScale);
+	void Delete (GameObject* go);
+
+	EntityMap& operator[] (unsigned int entityType);
+	EntityMap& GetEntityMap (unsigned int entityType);
+
+	void Update (float windowFakeScale, bool resized);
+
+	unsigned int GetValidID ();
 };
 
 #define GameObjects GameObjectManager::Instance()
